@@ -443,20 +443,24 @@
      - POST /responses  (save)
      - GET  /responses  (list all for group view)
 ────────────────────────────────────────────── */
+const firebaseConfig = {
 
-const Storage = {
-  async save(id, payload) {
-    const db = firebase.database();
-    await db.ref('responses/' + id).set(payload);
-    return true;
-  },
-  async loadAll() {
-    const db = firebase.database();
-    const snap = await db.ref('responses').once('value');
-    const data = snap.val();
-    return data ? Object.values(data) : [];
-  }
+  apiKey: "AIzaSyALEtKzmT47_frmpTd_FcOaEO-0rtu1bIM",
+
+  authDomain: "disc-portal.firebaseapp.com",
+
+  projectId: "disc-portal",
+
+  storageBucket: "disc-portal.firebasestorage.app",
+
+  messagingSenderId: "28374808850",
+
+  appId: "1:28374808850:web:951dc1c6e1a5d08aa31bcb"
+
 };
+
+
+
 
 /* ──────────────────────────────────────────────
    APP STATE
