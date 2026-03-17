@@ -830,7 +830,74 @@ function nextQ(){
 }
 
 /* ─────────────────────────────────────────────
-   SCORING
+   BLEND PROFILES — all 12 two-type combinations
+   plus triple-blend and single dominant
+───────────────────────────────────────────── */
+const BLENDS = {
+  'D/I':{
+    name:{en:'Inspirational Driver',hi:'प्रेरणादायक नेता'},
+    tagline:{en:'You combine bold ambition with the ability to rally people behind your vision. You lead from the front and bring others along.',hi:'आप साहसी महत्वाकांक्षा को लोगों को अपने विज़न के साथ जोड़ने की क्षमता से मिलाते हैं।'},
+    summary:{en:'Outgoing, results-driven, and persuasive. You set an ambitious agenda and inspire others to follow. High energy, high output — but can overlook details and people\'s feelings.',hi:'मिलनसार, परिणाम-उन्मुख और प्रेरक। आप एक महत्वाकांक्षी एजेंडा तय करते हैं और दूसरों को प्रेरित करते हैं।'}
+  },
+  'D/S':{
+    name:{en:'Driving Stabiliser',hi:'दृढ़ स्थिरीकर्ता'},
+    tagline:{en:'A rare blend: you drive hard for results while maintaining genuine loyalty to your team. Determined yet dependable.',hi:'एक दुर्लभ मिश्रण: आप परिणामों के लिए कड़ी मेहनत करते हुए अपनी टीम के प्रति वफादारी बनाए रखते हैं।'},
+    summary:{en:'Goal-oriented but people-aware. You push for progress without sacrificing relationships. Can sometimes appear contradictory — forceful one moment, accommodating the next.',hi:'लक्ष्य-उन्मुख लेकिन लोगों के प्रति जागरूक। आप संबंधों का बलिदान किए बिना प्रगति के लिए प्रयास करते हैं।'}
+  },
+  'D/C':{
+    name:{en:'Analytical Achiever',hi:'विश्लेषणात्मक उपलब्धकर्ता'},
+    tagline:{en:'You combine the drive to win with the discipline to do it right. Demanding of self and others, with high standards for both speed and quality.',hi:'आप जीतने की इच्छा को सही तरीके से करने के अनुशासन के साथ जोड़ते हैं।'},
+    summary:{en:'Independent, critical, and focused. You set the goal and engineer the path. Can be blunt, exacting, and resistant to input from others.',hi:'स्वतंत्र, आलोचनात्मक और केंद्रित। आप लक्ष्य निर्धारित करते हैं और रास्ता बनाते हैं।'}
+  },
+  'I/D':{
+    name:{en:'Inspirational Driver',hi:'प्रेरणादायक नेता'},
+    tagline:{en:'Enthusiasm and drive in equal measure. You energise teams and push for results with infectious confidence.',hi:'उत्साह और दृढ़ता समान मात्रा में। आप टीमों को ऊर्जावान बनाते हैं और संक्रामक आत्मविश्वास के साथ परिणामों के लिए प्रयास करते हैं।'},
+    summary:{en:'Outgoing, competitive, and persuasive. High energy with a bias for action. Can rush into decisions without enough data or consultation.',hi:'मिलनसार, प्रतिस्पर्धी और प्रेरक। कार्रवाई की प्रवृत्ति के साथ उच्च ऊर्जा।'}
+  },
+  'I/S':{
+    name:{en:'Warm Motivator',hi:'उष्णहृदय प्रेरक'},
+    tagline:{en:'People are your superpower. You inspire, encourage, and create a sense of belonging wherever you go.',hi:'लोग आपकी महाशक्ति हैं। आप प्रेरित करते हैं, प्रोत्साहित करते हैं और जहाँ भी जाते हैं अपनेपन की भावना पैदा करते हैं।'},
+    summary:{en:'Enthusiastic and empathetic. You read the room, lift spirits, and build lasting bonds. May avoid difficult conversations and struggle with follow-through on detail.',hi:'उत्साही और सहानुभूतिपूर्ण। आप माहौल समझते हैं, उत्साह बढ़ाते हैं और स्थायी संबंध बनाते हैं।'}
+  },
+  'I/C':{
+    name:{en:'Enthusiastic Perfectionist',hi:'उत्साही पूर्णतावादी'},
+    tagline:{en:'Rare and powerful: the creative energy of I with the precision of C. You generate exciting ideas and see them through with rigour.',hi:'दुर्लभ और शक्तिशाली: I की रचनात्मक ऊर्जा और C की सटीकता। आप रोमांचक विचार उत्पन्न करते हैं और उन्हें कठोरता से पूरा करते हैं।'},
+    summary:{en:'Innovative and thorough. You love creative work and insist it be done well. May struggle when others don\'t share your attention to quality.',hi:'नवोन्मेषी और पूर्णतावादी। आप रचनात्मक काम पसंद करते हैं और चाहते हैं कि वह अच्छे से हो।'}
+  },
+  'S/D':{
+    name:{en:'Determined Supporter',hi:'दृढ़निश्चयी सहायक'},
+    tagline:{en:'Quietly powerful. You build trust patiently, then drive hard when the moment calls for it.',hi:'शांत रूप से शक्तिशाली। आप धैर्यपूर्वक विश्वास बनाते हैं, फिर जब समय आता है तो कड़ी मेहनत करते हैं।'},
+    summary:{en:'Reliable and tenacious. You don\'t shout, but you don\'t give up either. Can be slow to act initially but incredibly persistent once committed.',hi:'विश्वसनीय और दृढ़। आप शोर नहीं करते, लेकिन हार भी नहीं मानते।'}
+  },
+  'S/I':{
+    name:{en:'Warm Motivator',hi:'उष्णहृदय प्रेरक'},
+    tagline:{en:'A natural connector. You make people feel safe, seen, and celebrated. Teams flourish under your quiet encouragement.',hi:'एक प्राकृतिक जोड़ने वाले। आप लोगों को सुरक्षित, देखा हुआ और उत्सवित महसूस कराते हैं।'},
+    summary:{en:'Patient, warm, and expressive. You create harmony and generate enthusiasm naturally. May avoid conflict even when it\'s necessary.',hi:'धैर्यशील, उष्ण और भावपूर्ण। आप स्वाभाविक रूप से सामंजस्य और उत्साह पैदा करते हैं।'}
+  },
+  'S/C':{
+    name:{en:'Careful Collaborator',hi:'सावधान सहयोगी'},
+    tagline:{en:'Methodical, dependable, and thorough. You do the work no one notices — until it\'s not done.',hi:'क्रमबद्ध, भरोसेमंद और पूर्णतावादी। आप वह काम करते हैं जिसे कोई नोटिस नहीं करता — जब तक यह नहीं होता।'},
+    summary:{en:'Steady and precise. You follow process, maintain quality, and support the team behind the scenes. May struggle to assert opinions or initiate change.',hi:'स्थिर और सटीक। आप प्रक्रिया का पालन करते हैं, गुणवत्ता बनाए रखते हैं और पर्दे के पीछे टीम का समर्थन करते हैं।'}
+  },
+  'C/D':{
+    name:{en:'Analytical Achiever',hi:'विश्लेषणात्मक उपलब्धकर्ता'},
+    tagline:{en:'You combine rigorous standards with a relentless drive for outcomes. Precise, determined, and uncompromising.',hi:'आप कठोर मानकों को परिणामों के लिए अथक प्रयास के साथ जोड़ते हैं।'},
+    summary:{en:'Exacting and results-focused. You define the standard and hold the line. Can be critical and inflexible when under pressure.',hi:'सटीक और परिणाम-केंद्रित। आप मानक तय करते हैं और उस पर टिके रहते हैं।'}
+  },
+  'C/I':{
+    name:{en:'Enthusiastic Perfectionist',hi:'उत्साही पूर्णतावादी'},
+    tagline:{en:'You think deeply and communicate with energy. Your ideas are well-considered and well-delivered.',hi:'आप गहराई से सोचते हैं और ऊर्जा के साथ संवाद करते हैं। आपके विचार सुविचारित और अच्छी तरह प्रस्तुत होते हैं।'},
+    summary:{en:'Thorough and engaging. You bring both creativity and rigour. May over-analyse before communicating, or over-share before thinking through the details.',hi:'पूर्णतावादी और आकर्षक। आप रचनात्मकता और कठोरता दोनों लाते हैं।'}
+  },
+  'C/S':{
+    name:{en:'Careful Collaborator',hi:'सावधान सहयोगी'},
+    tagline:{en:'Quiet, diligent, and trustworthy. You do what you say, say what you mean, and always deliver to a high standard.',hi:'शांत, परिश्रमी और भरोसेमंद। आप जो कहते हैं वो करते हैं, जो मतलब है वो कहते हैं, और हमेशा उच्च स्तर पर काम देते हैं।'},
+    summary:{en:'Conscientious and steady. You build systems, maintain standards, and keep people comfortable. May be over-cautious and slow to embrace new approaches.',hi:'कर्तव्यनिष्ठ और स्थिर। आप प्रणालियाँ बनाते हैं, मानक बनाए रखते हैं और लोगों को आरामदायक रखते हैं।'}
+  }
+};
+
+/* ─────────────────────────────────────────────
+   SCORING — returns full combination profile
 ───────────────────────────────────────────── */
 function calcScores(){
   const raw={D:0,I:0,S:0,C:0};
@@ -840,43 +907,129 @@ function calcScores(){
     if(a.most!==undefined) raw[item.adj[a.most].type]+=1;
     if(a.least!==undefined) raw[item.adj[a.least].type]-=1;
   });
+
+  // Convert to intensity 0–100
   const intensity={};
   ['D','I','S','C'].forEach(k=>{
     intensity[k]=Math.round(((raw[k]+28)/56)*100);
   });
+
+  // Sort all four dimensions descending
   const sorted=Object.entries(intensity).sort((a,b)=>b[1]-a[1]);
-  const top=sorted[0][0];
-  const second=sorted[1][0];
-  const isBlend=(sorted[0][1]-sorted[1][1])<=8;
-  return{raw,intensity,top,second,isBlend,sorted};
+
+  // Identify elevated dimensions (≥55 intensity = above average)
+  // Always include at least top 1; include more if within threshold of top
+  const top1=sorted[0], top2=sorted[1], top3=sorted[2];
+  const BLEND_THRESH = 12; // within 12 pts of highest = part of profile
+  const TRIPLE_THRESH = 10;
+
+  const elevated = sorted.filter(([t,v]) => v >= 55);
+  const topVal = top1[1];
+
+  // Build combination label
+  let combo=[], blendTypes=[];
+  // Always include #1
+  combo.push(top1[0]);
+  // Include #2 if within threshold OR above 55
+  if(top2[1] >= 55 || (topVal - top2[1]) <= BLEND_THRESH) combo.push(top2[0]);
+  // Include #3 only if genuinely close triple blend (all three within 10 pts of each other)
+  if(combo.length===2 && top3[1]>=55 && (top2[1]-top3[1])<=TRIPLE_THRESH) combo.push(top3[0]);
+
+  const comboKey = combo.length>=2 ? combo[0]+'/'+combo[1] : null;
+  const isSingle = combo.length===1;
+  const isTriple = combo.length===3;
+
+  return {raw, intensity, sorted, combo, comboKey, isSingle, isTriple, top:combo[0], second:combo[1]||null};
 }
 
 /* ─────────────────────────────────────────────
-   RESULT RENDER
+   RESULT RENDER — full combination profile
 ───────────────────────────────────────────── */
 function renderResult(){
   const sc=calcScores(), tx=TX[lang];
-  const p=PROF[sc.top], pSec=PROF[sc.second];
-  const maxH=180; // px for graph
+  const maxH=180;
+  const typeColors={D:'#E24B4A',I:'#EF9F27',S:'#1D9E75',C:'#378ADD'};
+  const typeColorsDark={D:'#791F1F',I:'#633806',S:'#085041',C:'#0C447C'};
+  const typeColorsLight={D:'#FCEBEB',I:'#FAEEDA',S:'#E1F5EE',C:'#E6F1FB'};
 
-  // Norm band
+  // Pick blend or single profile
+  const blend = !sc.isSingle && BLENDS[sc.comboKey] ? BLENDS[sc.comboKey] : null;
+  const primaryP = PROF[sc.top];
+  const secondP  = sc.second ? PROF[sc.second] : null;
+
+  // Profile name and tagline
+  const profileName = blend
+    ? blend.name[lang]
+    : primaryP.name[lang];
+  const profileTagline = blend
+    ? blend.tagline[lang]
+    : primaryP.tagline[lang];
+  const profileSummary = blend
+    ? blend.summary[lang]
+    : primaryP.workStyle[lang];
+
+  // Header badge — colored segments per combo
+  const comboBadgeHtml = sc.combo.map(t=>
+    `<span style="font-family:'DM Serif Display',serif;font-size:3.6rem;line-height:1;color:${typeColors[t]}">${t}</span>`
+  ).join('<span style="font-size:2rem;color:var(--text3);margin:0 4px">/</span>');
+
+  // Combo type pills
+  const comboPillsHtml = sc.combo.map(t=>
+    `<span style="display:inline-flex;align-items:center;gap:5px;background:${typeColorsLight[t]};color:${typeColorsDark[t]};font-size:12px;font-weight:500;padding:4px 12px;border-radius:99px;">${t} — ${PROF[t].name[lang]}</span>`
+  ).join('');
+
+  // Per-dimension contribution cards
+  const dimCardsHtml = sc.combo.map(t=>{
+    const p=PROF[t];
+    return `<div style="background:${typeColorsLight[t]};border-radius:10px;padding:1rem;border:1px solid ${typeColors[t]}22;">
+      <div style="font-family:'DM Serif Display',serif;font-size:1.5rem;color:${typeColors[t]};margin-bottom:2px">${t}</div>
+      <div style="font-size:12px;font-weight:500;color:${typeColorsDark[t]};margin-bottom:6px">${p.name[lang]}</div>
+      <div style="font-size:12px;color:${typeColorsDark[t]};opacity:.85;line-height:1.55">${p.tagline[lang]}</div>
+    </div>`;
+  }).join('');
+
+  // Merged insights — combine top 2 profiles
+  const mergeArr=(a1,a2)=>{
+    if(!a2) return a1;
+    // interleave: take first 2 from primary, first 2 from secondary
+    return [...a1.slice(0,2),...a2.slice(0,2)];
+  };
+
+  const strengths = mergeArr(primaryP.strengths[lang], secondP?secondP.strengths[lang]:null);
+  const growth    = mergeArr(primaryP.growth[lang],    secondP?secondP.growth[lang]:null);
+  const motivators= mergeArr(primaryP.motivators[lang],secondP?secondP.motivators[lang]:null);
+  const stressors = mergeArr(primaryP.stressors[lang], secondP?secondP.stressors[lang]:null);
+
+  // Comm tips — combine
+  const commsText = sc.isSingle
+    ? primaryP.comms[lang]
+    : primaryP.comms[lang] + ' ' + (secondP?secondP.comms[lang]:'');
+
   function normBand(v){
     if(v>=75) return{label:'High',cls:'nb-high'};
-    if(v>=55) return{label:'Above avg',cls:'nb-high'};
+    if(v>=55) return{label:'Elevated',cls:'nb-high'};
     if(v>=45) return{label:'Moderate',cls:'nb-mid'};
-    if(v>=25) return{label:'Below avg',cls:'nb-mid'};
+    if(v>=25) return{label:'Subdued',cls:'nb-mid'};
     return{label:'Low',cls:'nb-low'};
   }
 
-  const typeColors={D:'#E24B4A',I:'#EF9F27',S:'#1D9E75',C:'#378ADD'};
-
   document.getElementById('result-body').innerHTML=`
+
+    <!-- Header -->
     <div class="r-header">
-      <div class="r-type-big" style="color:${p.color}">${sc.isBlend?sc.top+'/'+sc.second:sc.top}</div>
-      <div class="r-name">${sc.isBlend?p.name[lang]+' / '+pSec.name[lang]:p.name[lang]}</div>
-      <div class="r-tagline">${p.tagline[lang]}</div>
-      ${sc.isBlend?`<div style="font-size:12px;color:var(--text3);margin-top:6px;">${tx.blendNote}: ${sc.top} &amp; ${sc.second} within 8 points</div>`:''}
+      <div style="margin-bottom:.5rem">${comboBadgeHtml}</div>
+      <div class="r-name">${profileName}</div>
+      <div class="r-tagline">${profileTagline}</div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:center;margin-top:.75rem">${comboPillsHtml}</div>
     </div>
+
+    <!-- Profile summary -->
+    <div style="background:var(--bg2);border-radius:var(--radius-lg);padding:1.1rem 1.3rem;margin-bottom:1.2rem;font-size:13.5px;color:var(--text2);line-height:1.7;border:0.5px solid var(--border);">
+      ${profileSummary}
+    </div>
+
+    <!-- Per-type cards -->
+    ${sc.combo.length>1?`<div style="display:grid;grid-template-columns:repeat(${sc.combo.length},1fr);gap:10px;margin-bottom:1.2rem;">${dimCardsHtml}</div>`:''}
 
     <!-- Profile Graph -->
     <div class="graph-card">
@@ -892,14 +1045,16 @@ function renderResult(){
           ${['D','I','S','C'].map(tp=>{
             const v=sc.intensity[tp];
             const h=Math.max(4,Math.round(v*maxH/100));
+            const isInCombo=sc.combo.includes(tp);
             return`<div class="g-bar-wrap">
-              <div class="g-bar-score">${v}</div>
-              <div class="g-bar" style="height:${h}px;background:${typeColors[tp]}"></div>
-              <div class="g-bar-label" style="color:${typeColors[tp]}">${tp}</div>
+              <div class="g-bar-score" style="color:${isInCombo?typeColors[tp]:'var(--text3)'};font-weight:${isInCombo?'500':'400'}">${v}</div>
+              <div class="g-bar" style="height:${h}px;background:${isInCombo?typeColors[tp]:'var(--bg3)'};border:${isInCombo?'none':'0.5px solid var(--border)'}"></div>
+              <div class="g-bar-label" style="color:${isInCombo?typeColors[tp]:'var(--text3)'}">${tp}</div>
             </div>`;
           }).join('')}
         </div>
       </div>
+      <div style="font-size:11px;color:var(--text3);text-align:center;margin-top:.75rem">Highlighted bars = your active profile dimensions · Threshold: ≥55 or within 12 pts of highest</div>
     </div>
 
     <!-- Raw + Intensity Scores -->
@@ -908,10 +1063,11 @@ function renderResult(){
       ${['D','I','S','C'].map(tp=>{
         const v=sc.raw[tp];
         const pct=Math.round(((v+28)/56)*100);
+        const inCombo=sc.combo.includes(tp);
         return`<div class="score-row">
-          <span class="score-lbl" style="color:${typeColors[tp]}">${PROF[tp].name[lang].split(' ')[0]}</span>
-          <div class="score-track"><div class="score-fill" style="width:${pct}%;background:${typeColors[tp]}"></div></div>
-          <span class="score-nums">Raw: ${v>0?'+':''}${v} &nbsp;|&nbsp; ${pct}%</span>
+          <span class="score-lbl" style="color:${inCombo?typeColors[tp]:'var(--text2)'};opacity:${inCombo?1:.6}">${PROF[tp].name[lang].split(' ')[0]}</span>
+          <div class="score-track"><div class="score-fill" style="width:${pct}%;background:${inCombo?typeColors[tp]:'var(--bg3)'}"></div></div>
+          <span class="score-nums" style="opacity:${inCombo?1:.6}">Raw: ${v>0?'+':''}${v} &nbsp;|&nbsp; ${pct}%</span>
         </div>`;
       }).join('')}
     </div>
@@ -919,26 +1075,26 @@ function renderResult(){
     <!-- Norm Reference -->
     <div class="norm-card">
       <div class="norm-title">${tx.normRef}</div>
-      ${['D','I','S','C'].map(tp=>{
-        const v=sc.intensity[tp];
+      ${sc.sorted.map(([tp,v])=>{
         const nb=normBand(v);
-        return`<div class="norm-row">
+        const inCombo=sc.combo.includes(tp);
+        return`<div class="norm-row" style="opacity:${inCombo?1:.55}">
           <span class="norm-type" style="color:${typeColors[tp]}">${tp}</span>
           <span class="norm-range">${v} / 100</span>
           <span class="norm-badge ${nb.cls}">${nb.label}</span>
-          <span class="norm-desc">${v>=75?'Dominant tendency':v>=55?'Elevated':v>=45?'Moderate':v>=25?'Subdued':'Low expression'}</span>
+          <span class="norm-desc">${inCombo?'<strong>Active in your profile</strong>':nb.label+' expression'}</span>
         </div>`;
       }).join('')}
     </div>
 
-    <!-- Insights -->
+    <!-- Combined Insights -->
     <div class="insight-grid">
-      <div class="ic"><div class="ic-title">${tx.strengths}</div><div class="ic-body">${p.strengths[lang].map(s=>'• '+s).join('<br>')}</div></div>
-      <div class="ic"><div class="ic-title">${tx.growth}</div><div class="ic-body">${p.growth[lang].map(s=>'• '+s).join('<br>')}</div></div>
-      <div class="ic"><div class="ic-title">${tx.workStyle}</div><div class="ic-body">${p.workStyle[lang]}</div></div>
-      <div class="ic"><div class="ic-title">${tx.comms}</div><div class="ic-body">${p.comms[lang]}</div></div>
-      <div class="ic"><div class="ic-title">${tx.motivators}</div><div class="ic-body">${p.motivators[lang].map(s=>'• '+s).join('<br>')}</div></div>
-      <div class="ic"><div class="ic-title">${tx.stressors}</div><div class="ic-body">${p.stressors[lang].map(s=>'• '+s).join('<br>')}</div></div>
+      <div class="ic"><div class="ic-title">${tx.strengths}</div><div class="ic-body">${strengths.map(s=>'• '+s).join('<br>')}</div></div>
+      <div class="ic"><div class="ic-title">${tx.growth}</div><div class="ic-body">${growth.map(s=>'• '+s).join('<br>')}</div></div>
+      <div class="ic"><div class="ic-title">${tx.workStyle}</div><div class="ic-body">${primaryP.workStyle[lang]}${secondP?'<br><br>'+secondP.workStyle[lang]:''}</div></div>
+      <div class="ic"><div class="ic-title">${tx.comms}</div><div class="ic-body">${commsText}</div></div>
+      <div class="ic"><div class="ic-title">${tx.motivators}</div><div class="ic-body">${motivators.map(s=>'• '+s).join('<br>')}</div></div>
+      <div class="ic"><div class="ic-title">${tx.stressors}</div><div class="ic-body">${stressors.map(s=>'• '+s).join('<br>')}</div></div>
     </div>
 
     <div class="action-row">
