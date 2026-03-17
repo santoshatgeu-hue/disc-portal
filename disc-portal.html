@@ -106,11 +106,11 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
 .legend-item{display:flex;align-items:center;gap:5px;font-size:11.5px;color:var(--text2);}
 .legend-dot{width:10px;height:10px;border-radius:50%;}
 
-.adj-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
+.adj-grid{display:grid;grid-template-columns:1fr;gap:8px;}
 .adj-btn{
   font-family:'DM Sans',sans-serif;
-  font-size:14px;
-  font-weight:500;
+  font-size:13.5px;
+  font-weight:400;
   padding:14px 16px;
   border-radius:var(--radius);
   border:0.5px solid var(--border2);
@@ -121,16 +121,17 @@ body{font-family:'DM Sans',sans-serif;background:var(--bg);color:var(--text);min
   transition:all .15s;
   display:flex;
   flex-direction:column;
-  gap:3px;
+  gap:4px;
   position:relative;
+  line-height:1.5;
 }
 .adj-btn:hover:not(.sel-most):not(.sel-least){background:var(--bg2);}
-.adj-btn.sel-most{background:var(--s-l);border-color:var(--s);color:var(--s-dk);}
-.adj-btn.sel-least{background:var(--d-l);border-color:var(--d);color:var(--d-dk);}
+.adj-btn.sel-most{background:var(--s-l);border-color:var(--s);color:var(--s-dk);border-width:1.5px;}
+.adj-btn.sel-least{background:var(--d-l);border-color:var(--d);color:var(--d-dk);border-width:1.5px;}
 .adj-btn.unavail{opacity:.4;cursor:not-allowed;}
-.adj-en{font-size:14px;font-weight:500;}
-.adj-hi{font-size:11.5px;opacity:.65;font-weight:400;}
-.adj-sel-badge{position:absolute;top:8px;right:10px;font-size:9px;font-weight:500;padding:2px 7px;border-radius:4px;}
+.adj-en{font-size:13.5px;font-weight:400;line-height:1.5;padding-right:60px;}
+.adj-hi{font-size:12px;opacity:.6;font-weight:400;padding-right:60px;}
+.adj-sel-badge{position:absolute;top:12px;right:12px;font-size:9px;font-weight:500;padding:3px 8px;border-radius:5px;flex-shrink:0;}
 .badge-most{background:var(--s);color:white;}
 .badge-least{background:var(--d);color:white;}
 
@@ -229,7 +230,7 @@ code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--bg2);bord
 /* ── Responsive ── */
 @media(max-width:580px){
   .hero h1{font-size:1.9rem;}
-  .ov-grid,.adj-grid,.insight-grid{grid-template-columns:1fr;}
+  .ov-grid,.insight-grid{grid-template-columns:1fr;}
   .graph-bars{gap:6px;}
   .score-nums{display:none;}
 }
@@ -240,9 +241,9 @@ code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--bg2);bord
 
   <!-- Hero -->
   <div class="hero">
-    <div class="hero-badge"><span class="dot"></span> Standardised · 28 Items · Forced Choice</div>
+    <div class="hero-badge"><span class="dot"></span> Standardised · 28 Items · Behavioural Statements</div>
     <h1>DISC <em>Assessment</em></h1>
-    <p id="hero-sub">Classic forced-choice format · Most &amp; Least · Bilingual EN / हिंदी</p>
+    <p id="hero-sub">Forced-choice statements · Most &amp; Least · Bilingual EN / हिंदी</p>
     <div class="disc-bar">
       <div style="background:#E24B4A"></div>
       <div style="background:#EF9F27"></div>
@@ -269,7 +270,7 @@ code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--bg2);bord
   <div class="sec active" id="sec-overview">
     <div class="info-box">
       <strong>About this assessment</strong>
-      This is a 28-item forced-choice DISC instrument based on the classic Everything DiSC® and Thomas PPA methodology. Each item presents 4 adjectives — one per dimension. You select the word that is <em>Most</em> like you and the word that is <em>Least</em> like you. This generates a raw score, intensity score, and profile graph for all four dimensions.
+      This is a 28-item forced-choice DISC instrument based on the classic Everything DiSC® and Thomas PPA methodology. Each item presents 4 behavioural statements — one per dimension. You select the statement that is <em>Most</em> like how you naturally behave, and the statement that is <em>Least</em> like you. This generates a raw score, intensity score, and profile graph for all four dimensions.
     </div>
     <div class="ov-grid">
       <div class="ov-card d"><div class="ov-letter">D</div><div class="ov-name">Dominance</div><div class="ov-desc">Emphasis on shaping the environment by overcoming opposition to accomplish results.</div><div class="ov-traits"><span class="trait">Direct</span><span class="trait">Decisive</span><span class="trait">Driven</span><span class="trait">Demanding</span></div></div>
@@ -279,15 +280,15 @@ code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--bg2);bord
     </div>
     <div class="format-box">
       <div class="format-title">How the forced-choice format works</div>
-      <div class="format-row"><span class="format-badge most-badge">MOST</span><div class="format-text">Select the one word from the group of 4 that is <strong>most</strong> like how you naturally behave. There are no right or wrong answers.</div></div>
-      <div class="format-row"><span class="format-badge least-badge">LEAST</span><div class="format-text">Then select the one word that is <strong>least</strong> like you. You must choose a different word from your Most selection.</div></div>
+      <div class="format-row"><span class="format-badge most-badge">MOST</span><div class="format-text">Select the one statement from the group of 4 that best describes how you <strong>most naturally</strong> behave. There are no right or wrong answers.</div></div>
+      <div class="format-row"><span class="format-badge least-badge">LEAST</span><div class="format-text">Then select the statement that is <strong>least</strong> like you. It must be different from your Most selection.</div></div>
       <div class="sample-item">
         <div class="sample-title">Sample item</div>
-        <div class="sample-words">
-          <div class="sample-word most-sel">Adventurous <span class="sel-tag most-tag">MOST</span></div>
-          <div class="sample-word">Persuasive</div>
-          <div class="sample-word least-sel">Accommodating <span class="sel-tag least-tag">LEAST</span></div>
-          <div class="sample-word">Analytical</div>
+        <div class="sample-words" style="grid-template-columns:1fr;">
+          <div class="sample-word most-sel" style="display:block;padding:9px 12px;line-height:1.4;">I take charge and push for results, even if it rubs people the wrong way. <span class="sel-tag most-tag">MOST</span></div>
+          <div class="sample-word" style="display:block;padding:9px 12px;line-height:1.4;">I enjoy meeting new people and thrive in lively, social settings.</div>
+          <div class="sample-word least-sel" style="display:block;padding:9px 12px;line-height:1.4;">I prefer a steady pace and like to work in a harmonious environment. <span class="sel-tag least-tag">LEAST</span></div>
+          <div class="sample-word" style="display:block;padding:9px 12px;line-height:1.4;">I believe in doing things correctly the first time, even if it takes longer.</div>
         </div>
       </div>
     </div>
@@ -331,7 +332,7 @@ code{font-family:'DM Mono',monospace;font-size:11.5px;background:var(--bg2);bord
 
       <div class="scoring-card">
         <h3>Step 1 — Raw score calculation</h3>
-        <p>Each of the 28 items contains 4 adjectives, each mapped to one DISC dimension (D, I, S, or C). For every item:</p>
+        <p>Each of the 28 items contains 4 behavioural statements, each mapped to one DISC dimension (D, I, S, or C). For every item:</p>
         <table class="score-table">
           <thead><tr><th>Selection</th><th>Points added</th><th>Why</th></tr></thead>
           <tbody>
@@ -412,201 +413,201 @@ let answers = new Array(28).fill(null);
    to avoid positional bias.
 ───────────────────────────────────────────── */
 const ITEMS = [
-  // 1
+  // 1 — Initiative vs harmony vs process vs people
   {adj:[
-    {en:"Daring",       hi:"साहसी",         type:"D"},
-    {en:"Enthusiastic", hi:"उत्साही",        type:"I"},
-    {en:"Warm",         hi:"स्नेही",          type:"S"},
-    {en:"Systematic",   hi:"व्यवस्थित",       type:"C"}
+    {en:"I take charge of situations and push for results, even when others hesitate.",                     hi:"मैं परिस्थितियों की कमान लेता हूँ और परिणाम के लिए दबाव डालता हूँ, भले ही दूसरे हिचकिचाएं।",           type:"D"},
+    {en:"I love meeting new people and naturally draw others into conversation.",                            hi:"मुझे नए लोगों से मिलना पसंद है और मैं स्वाभाविक रूप से दूसरों को बातचीत में शामिल कर लेता हूँ।",          type:"I"},
+    {en:"I prefer a predictable routine and get unsettled when things change without warning.",             hi:"मुझे पूर्वानुमेय दिनचर्या पसंद है और बिना चेतावनी के बदलाव होने पर मैं अस्थिर हो जाता हूँ।",             type:"S"},
+    {en:"I like to gather all the facts before making any decision.",                                       hi:"मैं कोई भी निर्णय लेने से पहले सभी तथ्य एकत्र करना पसंद करता हूँ।",                                      type:"C"}
   ]},
   // 2
   {adj:[
-    {en:"Competitive",  hi:"प्रतिस्पर्धी",    type:"D"},
-    {en:"Talkative",    hi:"बातूनी",           type:"I"},
-    {en:"Patient",      hi:"धैर्यशील",         type:"S"},
-    {en:"Accurate",     hi:"सटीक",            type:"C"}
+    {en:"When I disagree, I say so directly and expect the same honesty in return.",                        hi:"जब मैं असहमत होता हूँ, तो मैं सीधे कहता हूँ और बदले में उतनी ही ईमानदारी की अपेक्षा करता हूँ।",           type:"D"},
+    {en:"I keep the energy high in a group and help people feel excited about what we're doing.",           hi:"मैं समूह में ऊर्जा बनाए रखता हूँ और लोगों को हमारे काम के प्रति उत्साहित महसूस कराता हूँ।",               type:"I"},
+    {en:"I go out of my way to make sure everyone on the team feels included and valued.",                  hi:"मैं यह सुनिश्चित करने के लिए विशेष प्रयास करता हूँ कि टीम का हर सदस्य शामिल और मूल्यवान महसूस करे।",     type:"S"},
+    {en:"I hold myself and others to very high standards of accuracy and quality.",                         hi:"मैं खुद को और दूसरों को सटीकता और गुणवत्ता के बहुत उच्च मानकों पर रखता हूँ।",                            type:"C"}
   ]},
   // 3
   {adj:[
-    {en:"Bold",         hi:"निडर",            type:"D"},
-    {en:"Optimistic",   hi:"आशावादी",          type:"I"},
-    {en:"Loyal",        hi:"वफादार",           type:"S"},
-    {en:"Analytical",   hi:"विश्लेषणात्मक",    type:"C"}
+    {en:"I thrive under pressure — tight deadlines and high stakes bring out my best.",                     hi:"मैं दबाव में फलता-फूलता हूँ — तंग समय-सीमाएं और उच्च दांव मेरा सर्वश्रेष्ठ सामने लाती हैं।",             type:"D"},
+    {en:"I'm naturally optimistic and tend to see the possibilities in almost any situation.",              hi:"मैं स्वाभाविक रूप से आशावादी हूँ और लगभग किसी भी स्थिति में संभावनाएं देखता हूँ।",                          type:"I"},
+    {en:"I am deeply loyal and will consistently show up for the people I work with.",                      hi:"मैं गहराई से वफादार हूँ और जिन लोगों के साथ काम करता हूँ उनके लिए हमेशा मौजूद रहता हूँ।",                type:"S"},
+    {en:"I pay close attention to detail and spot errors that others often miss.",                          hi:"मैं विवरण पर ध्यान देता हूँ और वे गलतियां पकड़ता हूँ जो दूसरे अक्सर चूक जाते हैं।",                       type:"C"}
   ]},
   // 4
   {adj:[
-    {en:"Forceful",     hi:"दृढ़",             type:"D"},
-    {en:"Sociable",     hi:"मिलनसार",          type:"I"},
-    {en:"Gentle",       hi:"सौम्य",            type:"S"},
-    {en:"Precise",      hi:"सूक्ष्म",          type:"C"}
+    {en:"I set ambitious goals and hold myself accountable for hitting them.",                              hi:"मैं महत्वाकांक्षी लक्ष्य निर्धारित करता हूँ और उन्हें हासिल करने के लिए खुद को जवाबदेह ठहराता हूँ।",       type:"D"},
+    {en:"I communicate with energy and enthusiasm — I naturally attract attention in a room.",              hi:"मैं ऊर्जा और उत्साह के साथ संवाद करता हूँ — मैं स्वाभाविक रूप से एक कमरे में ध्यान आकर्षित करता हूँ।",    type:"I"},
+    {en:"I avoid conflict whenever possible and prefer to find a compromise that works for everyone.",      hi:"मैं जब भी संभव हो विवाद से बचता हूँ और सभी के लिए काम करने वाला समझौता खोजना पसंद करता हूँ।",            type:"S"},
+    {en:"I prefer a well-structured plan before starting any significant piece of work.",                   hi:"किसी भी महत्वपूर्ण काम को शुरू करने से पहले मैं एक सुव्यवस्थित योजना पसंद करता हूँ।",                     type:"C"}
   ]},
   // 5
   {adj:[
-    {en:"Decisive",     hi:"निर्णायक",         type:"D"},
-    {en:"Charming",     hi:"आकर्षक",           type:"I"},
-    {en:"Cooperative",  hi:"सहयोगी",           type:"S"},
-    {en:"Careful",      hi:"सावधान",           type:"C"}
+    {en:"I make decisions quickly and confidently, even when I don't have all the information.",            hi:"मैं जल्दी और आत्मविश्वास से निर्णय लेता हूँ, भले ही मेरे पास सारी जानकारी न हो।",                          type:"D"},
+    {en:"I build relationships quickly and genuinely enjoy getting to know people at a personal level.",    hi:"मैं जल्दी संबंध बनाता हूँ और व्यक्तिगत स्तर पर लोगों को जानने में वास्तविक आनंद लेता हूँ।",              type:"I"},
+    {en:"I work best when expectations are clear and the environment is stable and supportive.",            hi:"जब अपेक्षाएं स्पष्ट हों और वातावरण स्थिर और सहायक हो, तब मैं सर्वश्रेष्ठ काम करता हूँ।",                  type:"S"},
+    {en:"I ask a lot of questions before committing to a course of action.",                                hi:"किसी कार्य के प्रति प्रतिबद्ध होने से पहले मैं बहुत सारे प्रश्न पूछता हूँ।",                             type:"C"}
   ]},
   // 6
   {adj:[
-    {en:"Direct",       hi:"प्रत्यक्ष",        type:"D"},
-    {en:"Lively",       hi:"जीवंत",            type:"I"},
-    {en:"Dependable",   hi:"भरोसेमंद",         type:"S"},
-    {en:"Logical",      hi:"तार्किक",          type:"C"}
+    {en:"I get frustrated when people waste time on discussion instead of just getting things done.",       hi:"जब लोग काम करने की बजाय बहस में समय बर्बाद करते हैं, तो मुझे निराशा होती है।",                            type:"D"},
+    {en:"I find it easy to motivate and inspire others — I genuinely believe in the power of enthusiasm.", hi:"मुझे दूसरों को प्रेरित करना आसान लगता है — मैं वास्तव में उत्साह की शक्ति में विश्वास करता हूँ।",          type:"I"},
+    {en:"I take time to listen carefully before offering my opinion or advice.",                            hi:"अपनी राय या सलाह देने से पहले मैं ध्यान से सुनने में समय लेता हूँ।",                                       type:"S"},
+    {en:"I prefer to follow a proven process rather than improvise or experiment.",                         hi:"मैं सुधार या प्रयोग करने की बजाय एक सिद्ध प्रक्रिया का पालन करना पसंद करता हूँ।",                         type:"C"}
   ]},
   // 7
   {adj:[
-    {en:"Demanding",    hi:"माँग करने वाला",   type:"D"},
-    {en:"Expressive",   hi:"भावपूर्ण",         type:"I"},
-    {en:"Sincere",      hi:"ईमानदार",          type:"S"},
-    {en:"Thoughtful",   hi:"विचारशील",         type:"C"}
+    {en:"I'm comfortable challenging the status quo if I believe there's a better way.",                   hi:"अगर मुझे लगता है कि कोई बेहतर तरीका है, तो मैं यथास्थिति को चुनौती देने में सहज हूँ।",                     type:"D"},
+    {en:"I'm expressive and find it natural to share my feelings and enthusiasm openly.",                   hi:"मैं भावपूर्ण हूँ और अपनी भावनाएं और उत्साह खुलकर साझा करना स्वाभाविक लगता है।",                           type:"I"},
+    {en:"I take a calm, measured approach and rarely show strong emotions at work.",                        hi:"मैं शांत, संतुलित दृष्टिकोण अपनाता हूँ और काम में शायद ही कभी तीव्र भावनाएं दिखाता हूँ।",                 type:"S"},
+    {en:"I need time to think things through before I'm comfortable committing to a decision.",            hi:"निर्णय के प्रति सहज होने से पहले मुझे चीजों पर विचार करने का समय चाहिए।",                                   type:"C"}
   ]},
   // 8
   {adj:[
-    {en:"Ambitious",    hi:"महत्वाकांक्षी",    type:"D"},
-    {en:"Outgoing",     hi:"मिलनसार",          type:"I"},
-    {en:"Tolerant",     hi:"सहनशील",          type:"S"},
-    {en:"Disciplined",  hi:"अनुशासित",         type:"C"}
+    {en:"I measure my success by the results I achieve, not just the effort I put in.",                    hi:"मैं अपनी सफलता उस प्रयास से नहीं, बल्कि मेरे द्वारा प्राप्त परिणामों से मापता हूँ।",                       type:"D"},
+    {en:"I enjoy being the centre of attention and feeding off the energy of a crowd.",                    hi:"मैं ध्यान के केंद्र में रहना पसंद करता हूँ और भीड़ की ऊर्जा से ऊर्जा लेता हूँ।",                           type:"I"},
+    {en:"I am patient with others and rarely lose my composure, even in difficult situations.",             hi:"मैं दूसरों के साथ धैर्यवान हूँ और कठिन परिस्थितियों में भी शायद ही कभी संयम खोता हूँ।",                   type:"S"},
+    {en:"I find it hard to submit work I'm not completely satisfied with.",                                hi:"जिस काम से मैं पूरी तरह संतुष्ट न हो, उसे जमा करना मुझे कठिन लगता है।",                                    type:"C"}
   ]},
   // 9
   {adj:[
-    {en:"Adventurous",  hi:"साहसप्रिय",        type:"D"},
-    {en:"Inspiring",    hi:"प्रेरणादायक",      type:"I"},
-    {en:"Calm",         hi:"शांत",             type:"S"},
-    {en:"Meticulous",   hi:"सूक्ष्मदर्शी",     type:"C"}
+    {en:"I'm willing to take risks in order to move forward and gain a competitive edge.",                  hi:"आगे बढ़ने और प्रतिस्पर्धात्मक लाभ पाने के लिए मैं जोखिम लेने को तैयार हूँ।",                               type:"D"},
+    {en:"I tend to jump from one idea to the next — my mind is always buzzing with new thoughts.",         hi:"मैं एक विचार से दूसरे पर जाता रहता हूँ — मेरा दिमाग हमेशा नए विचारों से भरा रहता है।",                      type:"I"},
+    {en:"I am most productive when I have a consistent routine and clear responsibilities.",                hi:"जब मेरी नियमित दिनचर्या और स्पष्ट जिम्मेदारियां हों, तब मैं सबसे अधिक उत्पादक होता हूँ।",                 type:"S"},
+    {en:"I do extensive research before forming an opinion or making a recommendation.",                    hi:"राय बनाने या सिफारिश करने से पहले मैं व्यापक शोध करता हूँ।",                                               type:"C"}
   ]},
   // 10
   {adj:[
-    {en:"Strong-willed",hi:"दृढ़इच्छाशक्ति",   type:"D"},
-    {en:"Persuasive",   hi:"प्रेरक",           type:"I"},
-    {en:"Accommodating",hi:"अनुकूलनशील",       type:"S"},
-    {en:"Systematic",   hi:"क्रमबद्ध",         type:"C"}
+    {en:"I expect people to match my pace — slow progress or indecisiveness irritates me.",                hi:"मैं लोगों से अपेक्षा करता हूँ कि वे मेरी गति से मेल खाएं — धीमी प्रगति या अनिर्णायकता मुझे परेशान करती है।", type:"D"},
+    {en:"I'm a natural storyteller — I use humour and narrative to connect with people.",                  hi:"मैं एक स्वाभाविक कहानीकार हूँ — मैं लोगों से जुड़ने के लिए हास्य और कथा का उपयोग करता हूँ।",               type:"I"},
+    {en:"I work hard to keep harmony in the team and avoid anything that causes friction.",                 hi:"मैं टीम में सामंजस्य बनाए रखने के लिए कड़ी मेहनत करता हूँ और घर्षण पैदा करने वाली चीजों से बचता हूँ।",     type:"S"},
+    {en:"I naturally notice when something doesn't add up and feel compelled to investigate.",             hi:"जब कुछ मेल नहीं खाता, तो मैं स्वाभाविक रूप से इसे नोटिस करता हूँ और जांच करने की इच्छा महसूस करता हूँ।",  type:"C"}
   ]},
   // 11
   {adj:[
-    {en:"Assertive",    hi:"आत्मविश्वासी",     type:"D"},
-    {en:"Animated",     hi:"उत्साहपूर्ण",       type:"I"},
-    {en:"Amiable",      hi:"मृदुभाषी",         type:"S"},
-    {en:"Cautious",     hi:"सतर्क",            type:"C"}
+    {en:"I'm good at seeing the big picture and driving a team toward a clear goal.",                      hi:"मैं बड़ी तस्वीर देखने और एक टीम को स्पष्ट लक्ष्य की ओर ले जाने में अच्छा हूँ।",                             type:"D"},
+    {en:"I get bored easily with routine tasks — I need variety and new challenges to stay motivated.",    hi:"मैं नियमित कार्यों से जल्दी ऊब जाता हूँ — प्रेरित रहने के लिए मुझे विविधता और नई चुनौतियां चाहिए।",       type:"I"},
+    {en:"I give my best when I know the people around me feel safe, supported, and appreciated.",         hi:"जब मुझे पता होता है कि मेरे आसपास के लोग सुरक्षित, समर्थित और सराहे हुए महसूस करते हैं, तब मैं सर्वश्रेष्ठ देता हूँ।", type:"S"},
+    {en:"I like to document processes and procedures so that things are done the same way every time.",    hi:"मैं प्रक्रियाओं को दस्तावेज़ करना पसंद करता हूँ ताकि हर बार चीजें एक ही तरह से की जाएं।",                   type:"C"}
   ]},
   // 12
   {adj:[
-    {en:"Tenacious",    hi:"दृढ़निश्चयी",       type:"D"},
-    {en:"Spirited",     hi:"जोशीला",           type:"I"},
-    {en:"Consistent",   hi:"निरंतर",           type:"S"},
-    {en:"Thorough",     hi:"पूर्णतावादी",       type:"C"}
+    {en:"I push back when I think someone is wrong — I don't stay quiet to keep the peace.",              hi:"जब मुझे लगता है कि कोई गलत है, तो मैं विरोध करता हूँ — शांति बनाए रखने के लिए चुप नहीं रहता।",            type:"D"},
+    {en:"People describe me as warm, enthusiastic, and fun to be around.",                                hi:"लोग मुझे गर्मजोशी से भरा, उत्साही और साथ रहने में मज़ेदार बताते हैं।",                                       type:"I"},
+    {en:"I tend to put others' needs ahead of my own and often struggle to say no.",                      hi:"मैं दूसरों की जरूरतों को अपनी जरूरतों से ऊपर रखता हूँ और अक्सर 'नहीं' कहने में संघर्ष करता हूँ।",         type:"S"},
+    {en:"I set very high personal standards and become frustrated when others don't meet them.",           hi:"मैं बहुत उच्च व्यक्तिगत मानक निर्धारित करता हूँ और निराश होता हूँ जब दूसरे उन्हें पूरा नहीं करते।",        type:"C"}
   ]},
   // 13
   {adj:[
-    {en:"Determined",   hi:"संकल्पशील",        type:"D"},
-    {en:"Cheerful",     hi:"प्रसन्नचित्त",      type:"I"},
-    {en:"Stable",       hi:"स्थिर",            type:"C"}, // note: type C here for variety
-    {en:"Even-tempered",hi:"शांतस्वभावी",      type:"S"}
+    {en:"I'm competitive by nature — I want to win, and I set the pace for those around me.",             hi:"मैं स्वभाव से प्रतिस्पर्धी हूँ — मैं जीतना चाहता हूँ, और अपने आसपास के लोगों के लिए गति निर्धारित करता हूँ।", type:"D"},
+    {en:"I get genuinely excited by new ideas and can quickly convince others to share my enthusiasm.",   hi:"मैं नए विचारों से वास्तव में उत्साहित हो जाता हूँ और दूसरों को अपना उत्साह साझा करने के लिए जल्दी मना सकता हूँ।", type:"I"},
+    {en:"I need time to adjust to change — sudden shifts in direction make me anxious.",                  hi:"मुझे बदलाव के अनुकूल होने में समय लगता है — दिशा में अचानक बदलाव मुझे चिंतित करते हैं।",                    type:"S"},
+    {en:"I prefer to work independently on tasks that require focus, precision, and logic.",               hi:"मैं उन कार्यों पर स्वतंत्र रूप से काम करना पसंद करता हूँ जिनमें ध्यान, सटीकता और तर्क की आवश्यकता होती है।", type:"C"}
   ]},
   // 14
   {adj:[
-    {en:"Confident",    hi:"आत्मविश्वासपूर्ण",  type:"D"},
-    {en:"Trusting",     hi:"भरोसा करने वाला",  type:"I"},
-    {en:"Steady",       hi:"स्थिरचित्त",        type:"S"},
-    {en:"Objective",    hi:"वस्तुनिष्ठ",        type:"C"}
+    {en:"I'm direct and to the point — I'd rather be respected than liked.",                              hi:"मैं सीधा और बिंदु पर रहता हूँ — मैं पसंद किए जाने की बजाय सम्मान पाना चाहता हूँ।",                         type:"D"},
+    {en:"I'm genuinely interested in other people's lives and make friends wherever I go.",               hi:"मैं दूसरे लोगों के जीवन में वास्तविक रुचि रखता हूँ और जहाँ भी जाता हूँ दोस्त बनाता हूँ।",                  type:"I"},
+    {en:"I keep my promises and consistently follow through on everything I commit to.",                  hi:"मैं अपने वादे पूरे करता हूँ और जिस भी चीज के प्रति प्रतिबद्ध होता हूँ, उसे लगातार पूरा करता हूँ।",          type:"S"},
+    {en:"I'm cautious about making claims I cannot back up with solid evidence.",                         hi:"मैं ऐसे दावे करने के बारे में सावधान रहता हूँ जिन्हें मैं ठोस सबूत से साबित नहीं कर सकता।",                type:"C"}
   ]},
   // 15
   {adj:[
-    {en:"Risk-taking",  hi:"जोखिम लेने वाला",  type:"D"},
-    {en:"Playful",      hi:"खिलंदड़",           type:"I"},
-    {en:"Supportive",   hi:"सहायक",            type:"S"},
-    {en:"Detailed",     hi:"विस्तृत",           type:"C"}
+    {en:"I make things happen — I don't wait for permission or perfect conditions.",                      hi:"मैं चीजें होने पर मजबूर करता हूँ — मैं अनुमति या परफेक्ट परिस्थितियों का इंतज़ार नहीं करता।",               type:"D"},
+    {en:"I celebrate wins out loud and make sure the team knows their efforts are appreciated.",          hi:"मैं जीत का जश्न जोर से मनाता हूँ और यह सुनिश्चित करता हूँ कि टीम को पता चले कि उनके प्रयासों की सराहना है।", type:"I"},
+    {en:"I find satisfaction in quietly supporting others' success behind the scenes.",                   hi:"मैं पर्दे के पीछे दूसरों की सफलता का समर्थन करने में चुपचाप संतुष्टि पाता हूँ।",                            type:"S"},
+    {en:"I double-check my work and rarely hand anything in that I haven't reviewed thoroughly.",         hi:"मैं अपना काम दोबारा जाँचता हूँ और शायद ही कभी कुछ ऐसा जमा करता हूँ जिसकी मैंने पूरी तरह समीक्षा न की हो।", type:"C"}
   ]},
   // 16
   {adj:[
-    {en:"Pioneering",   hi:"अग्रणी",           type:"D"},
-    {en:"Impulsive",    hi:"आवेगशील",          type:"I"},
-    {en:"Predictable",  hi:"अनुमानयोग्य",      type:"S"},
-    {en:"Perfectionist",hi:"पूर्णतावादी",       type:"C"}
+    {en:"I have a clear sense of where I'm headed and rarely second-guess my direction.",                 hi:"मुझे स्पष्ट पता है कि मैं कहाँ जा रहा हूँ और मैं शायद ही कभी अपनी दिशा पर संदेह करता हूँ।",                type:"D"},
+    {en:"I say yes to new experiences and can be impulsive when something exciting comes up.",            hi:"मैं नए अनुभवों के लिए हाँ कहता हूँ और जब कुछ रोमांचक सामने आता है तो आवेगी हो सकता हूँ।",                 type:"I"},
+    {en:"I like to take my time before making a commitment and need to trust the people involved.",       hi:"प्रतिबद्धता बनाने से पहले मैं समय लेना पसंद करता हूँ और इसमें शामिल लोगों पर भरोसा करने की जरूरत है।",      type:"S"},
+    {en:"I review my decisions carefully to ensure they are sound and well-reasoned.",                   hi:"मैं अपने निर्णयों की सावधानीपूर्वक समीक्षा करता हूँ ताकि वे ठोस और तर्कपूर्ण हों।",                        type:"C"}
   ]},
   // 17
   {adj:[
-    {en:"Aggressive",   hi:"आक्रामक",          type:"D"},
-    {en:"Generous",     hi:"उदार",             type:"I"},
-    {en:"Unhurried",    hi:"अनावश्यक जल्दी न करने वाला",type:"S"},
-    {en:"Exacting",     hi:"कड़े मानक वाला",    type:"C"}
+    {en:"I get straight to the point in conversations and don't like to waste time with pleasantries.",  hi:"मैं बातचीत में सीधे मुद्दे पर आता हूँ और शिष्टाचार में समय बर्बाद करना पसंद नहीं करता।",                   type:"D"},
+    {en:"I'm an energetic and enthusiastic team player who brings fun and passion to the group.",        hi:"मैं एक ऊर्जावान और उत्साही टीम खिलाड़ी हूँ जो समूह में मज़ा और जुनून लाता हूँ।",                            type:"I"},
+    {en:"I work at a steady pace and feel uncomfortable when rushed or put under unnecessary pressure.", hi:"मैं स्थिर गति से काम करता हूँ और जल्दी करने या अनावश्यक दबाव में असहज महसूस करता हूँ।",                    type:"S"},
+    {en:"I take quality seriously and believe it's worth taking extra time to get something right.",     hi:"मैं गुणवत्ता को गंभीरता से लेता हूँ और मानता हूँ कि किसी चीज़ को सही करने के लिए अतिरिक्त समय लेना उचित है।", type:"C"}
   ]},
   // 18
   {adj:[
-    {en:"Blunt",        hi:"स्पष्टवादी",        type:"D"},
-    {en:"Enthusiastic", hi:"जोशीला",           type:"I"},
-    {en:"Modest",       hi:"विनम्र",            type:"S"},
-    {en:"Orderly",      hi:"सुव्यवस्थित",       type:"C"}
+    {en:"I'm not afraid to deliver difficult messages or have uncomfortable conversations.",             hi:"मैं कठिन संदेश देने या असहज बातचीत करने से नहीं डरता।",                                                      type:"D"},
+    {en:"I use humour and a light touch to keep morale up even during difficult periods.",              hi:"मैं कठिन समय में भी मनोबल बनाए रखने के लिए हास्य और हल्के स्पर्श का उपयोग करता हूँ।",                       type:"I"},
+    {en:"I rarely raise my voice and prefer to resolve tension through patience and understanding.",    hi:"मैं शायद ही कभी आवाज़ उठाता हूँ और धैर्य और समझ के माध्यम से तनाव सुलझाना पसंद करता हूँ।",                  type:"S"},
+    {en:"I'm thorough and systematic — I don't like cutting corners even when under time pressure.",   hi:"मैं पूर्णतावादी और व्यवस्थित हूँ — समय के दबाव में भी शॉर्टकट लेना पसंद नहीं करता।",                        type:"C"}
   ]},
   // 19
   {adj:[
-    {en:"Domineering",  hi:"प्रभुत्वशाली",      type:"D"},
-    {en:"Engaging",     hi:"आकर्षक",           type:"I"},
-    {en:"Easygoing",    hi:"सरल स्वभाव",        type:"S"},
-    {en:"Conventional", hi:"पारम्परिक",         type:"C"}
+    {en:"I take personal ownership of results and expect accountability from everyone involved.",       hi:"मैं परिणामों की व्यक्तिगत जिम्मेदारी लेता हूँ और इसमें शामिल सभी लोगों से जवाबदेही की अपेक्षा करता हूँ।", type:"D"},
+    {en:"I'm at my best when I'm collaborating and feeding off other people's creative energy.",       hi:"जब मैं सहयोग कर रहा होता हूँ और दूसरों की रचनात्मक ऊर्जा से ऊर्जा ले रहा होता हूँ, तब मैं सर्वश्रेष्ठ होता हूँ।", type:"I"},
+    {en:"I resist change if it disrupts the team's rhythm or destabilises existing relationships.",    hi:"मैं बदलाव का विरोध करता हूँ अगर यह टीम की लय को बाधित करता है या मौजूदा संबंधों को अस्थिर करता है।",        type:"S"},
+    {en:"I keep detailed records and find comfort in having clear systems and documentation.",         hi:"मैं विस्तृत रिकॉर्ड रखता हूँ और स्पष्ट प्रणालियां और दस्तावेज़ीकरण होने में सुकून महसूस करता हूँ।",          type:"C"}
   ]},
   // 20
   {adj:[
-    {en:"Impatient",    hi:"अधीर",             type:"D"},
-    {en:"Talkative",    hi:"वाचाल",            type:"I"},
-    {en:"Passive",      hi:"निष्क्रिय",         type:"S"},
-    {en:"Critical",     hi:"आलोचनात्मक",        type:"C"}
+    {en:"I feel most alive when I'm leading a project and driving it toward a successful outcome.",    hi:"मैं सबसे जीवंत महसूस करता हूँ जब मैं किसी प्रोजेक्ट का नेतृत्व कर रहा होता हूँ और उसे सफल परिणाम की ओर ले जा रहा होता हूँ।", type:"D"},
+    {en:"I'm drawn to people — I find it easy to start conversations and keep them going.",           hi:"मैं लोगों की ओर आकर्षित होता हूँ — मुझे बातचीत शुरू करना और उसे आगे बढ़ाना आसान लगता है।",                  type:"I"},
+    {en:"I prefer consensus over confrontation and will work hard to bring people to agreement.",     hi:"मैं टकराव की बजाय सहमति पसंद करता हूँ और लोगों को सहमति पर लाने के लिए कड़ी मेहनत करूँगा।",               type:"S"},
+    {en:"I look for the logical flaws in an argument before accepting it as valid.",                  hi:"किसी तर्क को वैध स्वीकार करने से पहले मैं उसमें तार्किक खामियां ढूँढता हूँ।",                              type:"C"}
   ]},
   // 21
   {adj:[
-    {en:"Results-focused",hi:"परिणामोन्मुख",   type:"D"},
-    {en:"People-focused",hi:"लोगोन्मुख",       type:"I"},
-    {en:"Process-focused",hi:"प्रक्रियाओन्मुख",type:"S"},
-    {en:"Quality-focused",hi:"गुणवत्तोन्मुख",  type:"C"}
+    {en:"I would rather make a bold mistake than hesitate and miss the opportunity entirely.",        hi:"मैं हिचकिचाने और अवसर पूरी तरह गंवाने की बजाय एक साहसी गलती करना पसंद करूँगा।",                          type:"D"},
+    {en:"People often comment that I bring a positive energy and infectious enthusiasm to any situation.",hi:"लोग अक्सर कहते हैं कि मैं किसी भी स्थिति में सकारात्मक ऊर्जा और संक्रामक उत्साह लाता हूँ।",            type:"I"},
+    {en:"I'm a reliable, steady presence — people know they can count on me to deliver consistently.", hi:"मैं एक विश्वसनीय, स्थिर उपस्थिति हूँ — लोग जानते हैं कि वे मुझ पर लगातार काम देने के लिए भरोसा कर सकते हैं।", type:"S"},
+    {en:"I analyse problems systematically and always look for the root cause, not just the symptom.",hi:"मैं समस्याओं का व्यवस्थित विश्लेषण करता हूँ और हमेशा जड़ कारण ढूँढता हूँ, न कि सिर्फ लक्षण।",            type:"C"}
   ]},
   // 22
   {adj:[
-    {en:"Decisive",     hi:"दृढ़निर्णायक",      type:"D"},
-    {en:"Inspiring",    hi:"उत्प्रेरक",         type:"I"},
-    {en:"Reliable",     hi:"विश्वसनीय",         type:"S"},
-    {en:"Precise",      hi:"यथार्थ",            type:"C"}
+    {en:"I feel stifled by too many rules, structures, or layers of approval.",                      hi:"बहुत सारे नियमों, संरचनाओं या अनुमोदन की परतों से मैं घुटन महसूस करता हूँ।",                               type:"D"},
+    {en:"I'm spontaneous and love creating memorable experiences for the people around me.",         hi:"मैं स्वतःस्फूर्त हूँ और अपने आसपास के लोगों के लिए यादगार अनुभव बनाना पसंद करता हूँ।",                    type:"I"},
+    {en:"I'm sensitive to the emotional climate in a room and adjust my approach accordingly.",      hi:"मैं एक कमरे के भावनात्मक माहौल के प्रति संवेदनशील हूँ और उसके अनुसार अपना दृष्टिकोण समायोजित करता हूँ।", type:"S"},
+    {en:"I resist pressure to make a quick decision when I haven't had enough time to evaluate.",   hi:"जब मेरे पास मूल्यांकन के लिए पर्याप्त समय नहीं होता, तब मैं जल्दी निर्णय लेने के दबाव का विरोध करता हूँ।", type:"C"}
   ]},
   // 23
   {adj:[
-    {en:"Challenging",  hi:"चुनौतीपूर्ण",       type:"D"},
-    {en:"Motivating",   hi:"प्रेरक",            type:"I"},
-    {en:"Harmonious",   hi:"सामंजस्यपूर्ण",     type:"S"},
-    {en:"Structured",   hi:"संरचित",            type:"C"}
+    {en:"I don't shy away from difficult conversations — I see them as necessary, not personal.",    hi:"मैं कठिन बातचीत से नहीं बचता — मैं उन्हें व्यक्तिगत नहीं, आवश्यक मानता हूँ।",                           type:"D"},
+    {en:"I enjoy being the one who creates excitement and builds momentum in the team.",              hi:"मैं वह व्यक्ति बनना पसंद करता हूँ जो टीम में उत्साह पैदा करे और गति बनाए।",                                type:"I"},
+    {en:"I am happiest when the people I care about are thriving and feel supported by me.",         hi:"मैं सबसे खुश होता हूँ जब जिन लोगों की मुझे परवाह है वे फल-फूल रहे हों और मेरे द्वारा समर्थित महसूस करें।", type:"S"},
+    {en:"I find it very difficult to let go of work I'm not fully satisfied with.",                 hi:"उस काम को छोड़ना मुझे बहुत मुश्किल लगता है जिससे मैं पूरी तरह संतुष्ट नहीं हूँ।",                          type:"C"}
   ]},
   // 24
   {adj:[
-    {en:"High-pressured",hi:"दबाव डालने वाला", type:"D"},
-    {en:"Open",         hi:"खुले दिल वाला",    type:"I"},
-    {en:"Agreeable",    hi:"सहमत होने वाला",   type:"S"},
-    {en:"Conscientious",hi:"कर्तव्यनिष्ठ",     type:"C"}
+    {en:"I'm energised by solving problems others think are unsolvable.",                           hi:"उन समस्याओं को सुलझाने से मुझे ऊर्जा मिलती है जिन्हें दूसरे असंभव समझते हैं।",                             type:"D"},
+    {en:"I find it hard to sit still — I'm always looking for the next conversation or activity.",  hi:"मुझे चुपचाप बैठना मुश्किल लगता है — मैं हमेशा अगली बातचीत या गतिविधि ढूँढता रहता हूँ।",                   type:"I"},
+    {en:"I value deep, long-term relationships over many shallow or professional ones.",             hi:"मैं कई उथले या पेशेवर संबंधों की बजाय गहरे, दीर्घकालिक संबंधों को महत्व देता हूँ।",                        type:"S"},
+    {en:"I believe most mistakes are avoidable with better planning and more careful thinking.",    hi:"मेरा मानना है कि बेहतर योजना और अधिक सावधानीपूर्वक सोच से अधिकांश गलतियां टाली जा सकती हैं।",            type:"C"}
   ]},
   // 25
   {adj:[
-    {en:"Inquisitive",  hi:"जिज्ञासु",          type:"D"},
-    {en:"Emotional",    hi:"भावनाशील",          type:"I"},
-    {en:"Selfless",     hi:"निःस्वार्थ",         type:"S"},
-    {en:"Compliant",    hi:"अनुपालक",           type:"C"}
+    {en:"I enjoy leading from the front and setting the example others are expected to follow.",    hi:"मैं आगे से नेतृत्व करना और वह उदाहरण स्थापित करना पसंद करता हूँ जिसका दूसरों को अनुसरण करना चाहिए।",      type:"D"},
+    {en:"I thrive on recognition and feel deflated when my efforts go unacknowledged.",             hi:"मैं पहचान पर फलता हूँ और जब मेरे प्रयासों को नज़रअंदाज़ किया जाता है तो उत्साह खो जाता है।",               type:"I"},
+    {en:"I focus on people's strengths and find it natural to offer encouragement and support.",    hi:"मैं लोगों की शक्तियों पर ध्यान देता हूँ और प्रोत्साहन और समर्थन प्रदान करना स्वाभाविक लगता है।",          type:"S"},
+    {en:"I'm disciplined and self-motivated — I don't need others to push me to meet my standards.",hi:"मैं अनुशासित और आत्म-प्रेरित हूँ — मुझे अपने मानकों को पूरा करने के लिए दूसरों की जरूरत नहीं है।",       type:"C"}
   ]},
   // 26
   {adj:[
-    {en:"Restless",     hi:"बेचैन",             type:"D"},
-    {en:"Vivacious",    hi:"उत्साहपूर्ण",        type:"I"},
-    {en:"Unhurried",    hi:"धीर",              type:"S"},
-    {en:"Factual",      hi:"तथ्यात्मक",         type:"C"}
+    {en:"I move quickly and expect the people around me to keep up with my pace.",                  hi:"मैं तेज़ी से आगे बढ़ता हूँ और अपने आसपास के लोगों से अपेक्षा करता हूँ कि वे मेरी गति से चलें।",             type:"D"},
+    {en:"I prefer to talk through ideas out loud — thinking and communicating happen simultaneously for me.", hi:"मैं विचारों को ज़ोर से बात करना पसंद करता हूँ — मेरे लिए सोचना और संवाद एक साथ होता है।",           type:"I"},
+    {en:"I take great care not to disrupt others or upset the balance of relationships.",           hi:"मैं दूसरों को परेशान न करने या संबंधों के संतुलन को बिगाड़ने के लिए बहुत सावधान रहता हूँ।",                type:"S"},
+    {en:"I bring order and structure to situations that others might find chaotic or unclear.",     hi:"मैं उन स्थितियों में व्यवस्था और संरचना लाता हूँ जिन्हें दूसरे अव्यवस्थित या अस्पष्ट पा सकते हैं।",      type:"C"}
   ]},
   // 27
   {adj:[
-    {en:"Innovative",   hi:"अभिनव",            type:"D"},
-    {en:"Influential",  hi:"प्रभावशाली",        type:"I"},
-    {en:"Sympathetic",  hi:"सहानुभूतिपूर्ण",   type:"S"},
-    {en:"Methodical",   hi:"क्रमबद्ध",          type:"C"}
+    {en:"I have strong opinions and defend them vigorously when challenged.",                       hi:"मेरी दृढ़ राय है और चुनौती मिलने पर मैं उनका जोरदार बचाव करता हूँ।",                                       type:"D"},
+    {en:"I'm genuinely moved by stories of people overcoming challenges and share them freely.",    hi:"मैं लोगों के चुनौतियों पर काबू पाने की कहानियों से वास्तविक रूप से प्रेरित होता हूँ और उन्हें स्वतंत्र रूप से साझा करता हूँ।", type:"I"},
+    {en:"I check in on my colleagues regularly to make sure they're doing well personally.",        hi:"मैं नियमित रूप से अपने सहकर्मियों से जाँच करता हूँ कि वे व्यक्तिगत रूप से ठीक हैं।",                      type:"S"},
+    {en:"I question assumptions and don't accept 'because we've always done it this way' as an answer.", hi:"मैं धारणाओं पर सवाल उठाता हूँ और 'क्योंकि हम हमेशा ऐसा करते आए हैं' को उत्तर के रूप में स्वीकार नहीं करता।", type:"C"}
   ]},
   // 28
   {adj:[
-    {en:"Courageous",   hi:"साहसी",            type:"D"},
-    {en:"Spontaneous",  hi:"स्वतःस्फूर्त",     type:"I"},
-    {en:"Nurturing",    hi:"पोषक",             type:"S"},
-    {en:"Diligent",     hi:"परिश्रमी",          type:"C"}
+    {en:"I am courageous under pressure and willing to make bold calls even with incomplete information.", hi:"मैं दबाव में साहसी हूँ और अधूरी जानकारी के साथ भी साहसी निर्णय लेने को तैयार हूँ।",                type:"D"},
+    {en:"I bring spontaneity and lightness to the workplace — work should feel energising, not heavy.", hi:"मैं कार्यस्थल पर स्वतःस्फूर्तता और हल्कापन लाता हूँ — काम ऊर्जावान महसूस होना चाहिए, भारी नहीं।",     type:"I"},
+    {en:"I naturally take on a nurturing role and care deeply about people's wellbeing.",            hi:"मैं स्वाभाविक रूप से पोषण करने वाली भूमिका निभाता हूँ और लोगों की भलाई की गहरी परवाह करता हूँ।",          type:"S"},
+    {en:"I pride myself on being reliable, diligent, and producing work that meets the highest standards.", hi:"मैं खुद पर विश्वसनीय, परिश्रमी होने और उच्चतम मानकों को पूरा करने वाला काम करने पर गर्व करता हूँ।", type:"C"}
   ]}
 ];
 
