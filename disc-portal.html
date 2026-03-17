@@ -1,889 +1,234 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>DISC Personality Portal</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500&display=swap" rel="stylesheet"/>
+<meta charset="UTF-8">
+<title>DISC Premium Assessment</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <style>
-  /* ── Reset & Base ── */
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  :root {
-    --d: #E24B4A; --d-l: #FCEBEB; --d-dk: #791F1F;
-    --i: #EF9F27; --i-l: #FAEEDA; --i-dk: #633806;
-    --s: #1D9E75; --s-l: #E1F5EE; --s-dk: #085041;
-    --c: #378ADD; --c-l: #E6F1FB; --c-dk: #0C447C;
-    --bg: #FAFAF8;
-    --bg2: #F2F0EA;
-    --bg3: #ECEAE2;
-    --text: #1A1916;
-    --text2: #6B6960;
-    --text3: #9B998F;
-    --border: rgba(26,25,22,0.12);
-    --border2: rgba(26,25,22,0.22);
-    --radius: 10px;
-    --radius-lg: 14px;
-    --shadow: 0 1px 3px rgba(0,0,0,0.07), 0 4px 16px rgba(0,0,0,0.05);
-  }
-  html { font-size: 16px; }
-  body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
-    min-height: 100vh;
-    line-height: 1.6;
-  }
-
-  /* ── Layout ── */
-  .app {
-    max-width: 880px;
-    margin: 0 auto;
-    padding: 2.5rem 1.5rem 4rem;
-  }
-
-  /* ── Hero ── */
-  .hero {
-    text-align: center;
-    margin-bottom: 2rem;
-    padding-top: 1rem;
-  }
-  .hero-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: .1em;
-    text-transform: uppercase;
-    color: var(--text3);
-    background: var(--bg2);
-    border: 0.5px solid var(--border);
-    border-radius: 99px;
-    padding: 4px 12px;
-    margin-bottom: 1rem;
-  }
-  .hero-badge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--s); }
-  .hero h1 {
-    font-family: 'DM Serif Display', serif;
-    font-size: clamp(2.2rem, 5vw, 3.2rem);
-    color: var(--text);
-    line-height: 1.05;
-    margin-bottom: .5rem;
-  }
-  .hero h1 em { font-style: italic; color: var(--text2); }
-  .hero p { font-size: 14px; color: var(--text2); max-width: 440px; margin: 0 auto; }
-  .disc-bar {
-    display: flex;
-    gap: 4px;
-    max-width: 300px;
-    margin: 1.2rem auto 0;
-    height: 4px;
-    border-radius: 99px;
-    overflow: hidden;
-  }
-  .disc-bar div { flex: 1; }
-
-  /* ── Top Controls ── */
-  .top-controls {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    border-bottom: 0.5px solid var(--border);
-    margin-bottom: 2rem;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-  .tabs { display: flex; }
-  .tab {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    padding: 10px 16px;
-    border: none;
-    background: none;
-    cursor: pointer;
-    color: var(--text2);
-    border-bottom: 2px solid transparent;
-    margin-bottom: -0.5px;
-    transition: color .15s;
-    white-space: nowrap;
-  }
-  .tab.active { color: var(--text); border-bottom-color: var(--text); }
-  .tab:hover:not(.active) { color: var(--text); }
-  .lang-sw {
-    display: flex;
-    gap: 3px;
-    background: var(--bg2);
-    border-radius: var(--radius);
-    padding: 3px;
-    border: 0.5px solid var(--border);
-  }
-  .lbtn {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 12px;
-    font-weight: 500;
-    padding: 5px 12px;
-    border-radius: 7px;
-    border: none;
-    cursor: pointer;
-    background: transparent;
-    color: var(--text2);
-    transition: all .15s;
-  }
-  .lbtn.active {
+body {
+    font-family: Arial;
+    background: #eef2f7;
+    margin: 0;
+}
+.container {
+    max-width: 600px;
+    margin: auto;
+    padding: 20px;
+}
+.card {
     background: white;
-    color: var(--text);
-    border: 0.5px solid var(--border2);
-    box-shadow: 0 1px 3px rgba(0,0,0,.06);
-  }
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+h2 { margin-top:0; }
 
-  /* ── Sections ── */
-  .sec { display: none; animation: fadeIn .25s ease; }
-  .sec.active { display: block; }
-  @keyframes fadeIn { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+.progress {
+    height: 8px;
+    background: #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.progress-bar {
+    height: 100%;
+    background: #007bff;
+    width: 0%;
+    border-radius: 10px;
+}
 
-  /* ── Anon Banner ── */
-  .anon-bar {
+.options {
     display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    background: #E8F5EF;
-    border: 0.5px solid #9FE1CB;
-    border-radius: var(--radius);
-    padding: .75rem 1rem;
-    margin-bottom: 1.5rem;
-  }
-  .anon-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--s); flex-shrink: 0; margin-top: 4px; }
-  .anon-txt { font-size: 12.5px; color: var(--s-dk); line-height: 1.5; }
+    gap: 20px;
+    margin-top: 15px;
+}
+.col {
+    flex:1;
+}
+label {
+    display:block;
+    margin:8px 0;
+    cursor:pointer;
+}
+button {
+    margin-top:20px;
+    padding:12px;
+    width:100%;
+    border:none;
+    border-radius:8px;
+    background:#007bff;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+}
+button:hover { background:#0056b3; }
 
-  /* ── Overview Grid ── */
-  .q-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 1.5rem; }
-  .qc {
-    border-radius: var(--radius-lg);
-    padding: 1.3rem;
-    border: 1.5px solid transparent;
-    transition: transform .15s, box-shadow .15s;
-  }
-  .qc:hover { transform: translateY(-2px); box-shadow: var(--shadow); }
-  .qc.d  { background: var(--d-l); color: var(--d-dk); }
-  .qc.ic { background: var(--i-l); color: var(--i-dk); }
-  .qc.s  { background: var(--s-l); color: var(--s-dk); }
-  .qc.c  { background: var(--c-l); color: var(--c-dk); }
-  .ql { font-family: 'DM Serif Display', serif; font-size: 2.4rem; line-height: 1; margin-bottom: 4px; }
-  .qn { font-size: 11px; font-weight: 500; text-transform: uppercase; letter-spacing: .09em; margin-bottom: 6px; }
-  .qd { font-size: 13px; line-height: 1.55; opacity: .85; }
-  .tpills { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 4px; }
-  .pill { font-size: 11px; padding: 2px 9px; border-radius: 99px; font-weight: 500; background: rgba(255,255,255,.55); }
-
-  /* ── Assessment ── */
-  .aw { max-width: 720px; margin: 0 auto; }
-  .q-meta { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
-  .qcnt { font-size: 12px; color: var(--text3); }
-  .pbw { flex: 1; background: var(--bg3); border-radius: 99px; height: 5px; margin: 0 12px; overflow: hidden; }
-  .pbf { height: 100%; border-radius: 99px; background: var(--text); transition: width .45s ease; }
-  .qcard {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.75rem;
-    margin-top: 1rem;
-    box-shadow: var(--shadow);
-  }
-  .qt  { font-family: 'DM Serif Display', serif; font-size: 1.3rem; color: var(--text); line-height: 1.35; margin-bottom: 4px; }
-  .qth { font-size: 13px; color: var(--text2); margin-bottom: 1.3rem; line-height: 1.5; }
-  .cgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .cb {
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    padding: 11px 14px;
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border2);
-    background: var(--bg);
-    color: var(--text);
-    cursor: pointer;
-    text-align: left;
-    transition: all .15s;
-    line-height: 1.4;
-  }
-  .cb:hover { background: var(--bg2); border-color: var(--border2); }
-  .cb.cD { background: var(--d-l); border-color: var(--d); color: var(--d-dk); }
-  .cb.cI { background: var(--i-l); border-color: var(--i); color: var(--i-dk); }
-  .cb.cS { background: var(--s-l); border-color: var(--s); color: var(--s-dk); }
-  .cb.cC { background: var(--c-l); border-color: var(--c); color: var(--c-dk); }
-  .csub { font-size: 11px; opacity: .65; margin-top: 3px; display: block; }
-
-  /* ── Results ── */
-  .rw { max-width: 720px; margin: 0 auto; }
-  .rh { text-align: center; margin-bottom: 2rem; }
-  .rbig { display: inline-block; font-family: 'DM Serif Display', serif; font-size: 4rem; line-height: 1; margin-bottom: 4px; }
-  .rl { font-size: 18px; font-weight: 500; color: var(--text); margin-bottom: 4px; }
-  .rs { font-size: 13px; color: var(--text2); max-width: 400px; margin: 0 auto; }
-  .result-card {
-    background: white;
-    border: 0.5px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 1.5rem;
-    margin-bottom: 1rem;
-    box-shadow: var(--shadow);
-  }
-  .sbars { margin: .5rem 0; }
-  .srow { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
-  .slbl { font-weight: 500; font-size: 12px; width: 90px; flex-shrink: 0; }
-  .str  { flex: 1; background: var(--bg2); border-radius: 99px; height: 8px; overflow: hidden; }
-  .sf   { height: 100%; border-radius: 99px; transition: width 1.1s ease; }
-  .spct { font-size: 12px; font-weight: 500; color: var(--text); width: 36px; text-align: right; }
-  .igrid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
-  .ic2  { background: var(--bg); border: 0.5px solid var(--border); border-radius: var(--radius); padding: .9rem 1rem; }
-  .it   { font-size: 10px; font-weight: 500; text-transform: uppercase; letter-spacing: .09em; color: var(--text3); margin-bottom: 6px; }
-  .ib   { font-size: 13px; color: var(--text); line-height: 1.65; }
-
-  /* ── Group Dashboard ── */
-  .stat-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.5rem; }
-  .stat { background: white; border: 0.5px solid var(--border); border-radius: var(--radius); padding: 1rem; text-align: center; box-shadow: var(--shadow); }
-  .stat-val { font-size: 24px; font-weight: 500; margin-bottom: 2px; }
-  .stat-lbl { font-size: 11px; color: var(--text3); }
-  .dist-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 1.2rem; }
-  .dist-card { border-radius: var(--radius); padding: 1rem; text-align: center; }
-  .dist-card.d  { background: var(--d-l); color: var(--d-dk); }
-  .dist-card.ic { background: var(--i-l); color: var(--i-dk); }
-  .dist-card.s  { background: var(--s-l); color: var(--s-dk); }
-  .dist-card.c  { background: var(--c-l); color: var(--c-dk); }
-  .dist-letter { font-family: 'DM Serif Display', serif; font-size: 1.8rem; line-height: 1; }
-  .dist-n      { font-size: 20px; font-weight: 500; margin: 4px 0 2px; }
-  .dist-pct    { font-size: 12px; opacity: .75; }
-  .grp-bars { background: white; border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.4rem; margin-bottom: 1rem; box-shadow: var(--shadow); }
-  .grp-title { font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 1rem; }
-  .grp-row  { display: flex; align-items: center; gap: 12px; margin-bottom: 11px; }
-  .grp-lbl  { font-size: 12px; font-weight: 500; width: 115px; flex-shrink: 0; }
-  .grp-track { flex: 1; background: var(--bg2); border-radius: 99px; height: 16px; overflow: hidden; }
-  .grp-fill  { height: 100%; border-radius: 99px; display: flex; align-items: center; justify-content: flex-end; padding-right: 8px; transition: width 1s ease; min-width: 30px; }
-  .grp-pct   { font-size: 11px; font-weight: 500; color: white; }
-  .grp-n     { font-size: 11px; color: var(--text3); width: 28px; text-align: right; }
-
-  /* ── Buttons ── */
-  .gbtn {
-    width: 100%;
-    padding: 12px;
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border2);
-    background: white;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 14px;
-    font-weight: 500;
-    cursor: pointer;
-    color: var(--text);
-    transition: background .15s;
-    margin-top: 1rem;
-    box-shadow: var(--shadow);
-  }
-  .gbtn:hover { background: var(--bg2); }
-  .gbtn.primary { background: var(--text); color: white; border-color: var(--text); }
-  .gbtn.primary:hover { background: #333; }
-
-  /* ── Notice ── */
-  .notice {
-    font-size: 12.5px;
-    color: var(--text2);
-    text-align: center;
-    padding: .9rem 1rem;
-    background: var(--bg2);
-    border-radius: var(--radius);
-    border: 0.5px solid var(--border);
-    margin-bottom: 1rem;
-    line-height: 1.5;
-  }
-  .loading { text-align: center; padding: 3rem; color: var(--text3); font-size: 13px; }
-
-  /* ── Storage Config Panel ── */
-  .config-panel {
-    background: #FFF8ED;
-    border: 0.5px solid #FAC775;
-    border-radius: var(--radius);
-    padding: 1rem 1.2rem;
-    margin-bottom: 1.5rem;
-    font-size: 13px;
-    color: var(--i-dk);
-  }
-  .config-panel strong { font-weight: 500; display: block; margin-bottom: 4px; }
-  .config-panel code {
-    display: inline-block;
-    background: rgba(0,0,0,.06);
-    border-radius: 4px;
-    padding: 1px 6px;
-    font-family: monospace;
-    font-size: 12px;
-  }
-
-  /* ── Responsive ── */
-  @media (max-width: 600px) {
-    .hero h1 { font-size: 2rem; }
-    .q-grid, .cgrid, .igrid, .dist-grid, .stat-row { grid-template-columns: 1fr; }
-    .top-controls { flex-direction: column; align-items: flex-start; }
-    .qcard { padding: 1.2rem; }
-  }
+.result { margin-top:20px; }
+.bar { height:20px; background:#007bff; margin:5px 0;}
 </style>
 </head>
+
 <body>
+<div class="container">
 
-<div class="app">
+<div class="progress"><div id="progressBar" class="progress-bar"></div></div>
 
-  <!-- Hero -->
-  <div class="hero">
-    <div class="hero-badge"><span class="dot"></span> Anonymous &amp; Secure</div>
-    <h1>DISC <em>Personality</em> Portal</h1>
-    <p id="hero-p">Discover your behavioral profile · Anonymous · Group insights</p>
-    <div class="disc-bar">
-      <div style="background:#E24B4A"></div>
-      <div style="background:#EF9F27"></div>
-      <div style="background:#1D9E75"></div>
-      <div style="background:#378ADD"></div>
-    </div>
-  </div>
+<div class="card" id="card"></div>
 
-  <!-- Top Controls -->
-  <div class="top-controls">
-    <div class="tabs">
-      <button class="tab active" onclick="goTab('overview')">Overview</button>
-      <button class="tab" onclick="goTab('assess')">Assessment</button>
-      <button class="tab" id="rtab" onclick="goTab('result')" style="display:none">My Result</button>
-      <button class="tab" onclick="goTab('group')">Group View</button>
-    </div>
-    <div class="lang-sw">
-      <button class="lbtn active" onclick="setLang('en')">EN</button>
-      <button class="lbtn" onclick="setLang('hi')">हिंदी</button>
-    </div>
-  </div>
-
-  <!-- OVERVIEW -->
-  <div class="sec active" id="sec-overview">
-    <div class="anon-bar">
-      <div class="anon-dot"></div>
-      <div class="anon-txt" id="anon-txt">Your responses are fully anonymous. No name or identity is ever stored — only your DISC scores contribute to the group view.</div>
-    </div>
-    <div class="q-grid">
-      <div class="qc d">
-        <div class="ql">D</div>
-        <div class="qn" id="ov-dn">Dominance</div>
-        <div class="qd" id="ov-dd">Results-driven and direct. You tackle challenges head-on and move fast toward goals.</div>
-        <div class="tpills"><span class="pill" id="ov-d1">Decisive</span><span class="pill" id="ov-d2">Bold</span><span class="pill" id="ov-d3">Competitive</span></div>
-      </div>
-      <div class="qc ic">
-        <div class="ql">I</div>
-        <div class="qn" id="ov-in">Influence</div>
-        <div class="qd" id="ov-id">Enthusiastic and optimistic. You inspire others and thrive through collaboration.</div>
-        <div class="tpills"><span class="pill" id="ov-i1">Charismatic</span><span class="pill" id="ov-i2">Persuasive</span><span class="pill" id="ov-i3">Optimistic</span></div>
-      </div>
-      <div class="qc s">
-        <div class="ql">S</div>
-        <div class="qn" id="ov-sn">Steadiness</div>
-        <div class="qd" id="ov-sd">Reliable and patient. You build trust through consistency and genuine care.</div>
-        <div class="tpills"><span class="pill" id="ov-s1">Loyal</span><span class="pill" id="ov-s2">Calm</span><span class="pill" id="ov-s3">Supportive</span></div>
-      </div>
-      <div class="qc c">
-        <div class="ql">C</div>
-        <div class="qn" id="ov-cn">Conscientiousness</div>
-        <div class="qd" id="ov-cd">Analytical and precise. You set high standards, value accuracy, and think before you act.</div>
-        <div class="tpills"><span class="pill" id="ov-c1">Accurate</span><span class="pill" id="ov-c2">Systematic</span><span class="pill" id="ov-c3">Careful</span></div>
-      </div>
-    </div>
-    <div style="text-align:center">
-      <button class="gbtn primary" onclick="goTab('assess')" style="max-width:280px" id="start-btn">Start your assessment →</button>
-    </div>
-  </div>
-
-  <!-- ASSESSMENT -->
-  <div class="sec" id="sec-assess">
-    <div class="aw">
-      <div class="q-meta">
-        <span class="qcnt" id="qcnt">Question 1 of 18</span>
-        <div class="pbw"><div class="pbf" id="pbf" style="width:5%"></div></div>
-        <span class="qcnt" id="qpct">5%</span>
-      </div>
-      <div class="qcard">
-        <div class="qt" id="qt"></div>
-        <div class="qth" id="qth"></div>
-        <div class="cgrid" id="cgrid"></div>
-      </div>
-    </div>
-  </div>
-
-  <!-- RESULT -->
-  <div class="sec" id="sec-result">
-    <div class="rw" id="result-body"></div>
-  </div>
-
-  <!-- GROUP VIEW -->
-  <div class="sec" id="sec-group">
-    <div id="group-body"><div class="loading">Loading group data...</div></div>
-  </div>
-
-</div><!-- /app -->
+</div>
 
 <script>
-/* ──────────────────────────────────────────────
-   STORAGE ADAPTER
-   ─────────────────────────────────────────────
-   By default this uses localStorage for demo purposes.
-   To enable real shared persistence across users, replace
-   the three functions below with your backend of choice.
 
-   Option A: Firebase Realtime Database
-     - Create a project at https://console.firebase.google.com
-     - Add the Firebase SDK script tag before </body>
-     - Replace the functions below with Firebase calls
-
-   Option B: Supabase (PostgreSQL)
-     - Create a project at https://supabase.com
-     - Create a table: disc_responses(id text, D int, I int, S int, C int, top text, ts bigint)
-     - Replace the functions below with Supabase client calls
-
-   Option C: Any REST API
-     - POST /responses  (save)
-     - GET  /responses  (list all for group view)
-────────────────────────────────────────────── */
-
-const Storage = {
-  async save(id, payload) {
-    /* ---- Replace this block with your backend call ---- */
-    try {
-      const all = JSON.parse(localStorage.getItem('disc_responses') || '{}');
-      all[id] = payload;
-      localStorage.setItem('disc_responses', JSON.stringify(all));
-      return true;
-    } catch(e) { return false; }
-    /* --------------------------------------------------- */
-  },
-  async loadAll() {
-    /* ---- Replace this block with your backend call ---- */
-    try {
-      const all = JSON.parse(localStorage.getItem('disc_responses') || '{}');
-      return Object.values(all);
-    } catch(e) { return []; }
-    /* --------------------------------------------------- */
-  }
-};
-
-/* ──────────────────────────────────────────────
-   APP STATE
-────────────────────────────────────────────── */
-let lang = 'en', cur = 0, scores = {D:0,I:0,S:0,C:0};
-
-/* ──────────────────────────────────────────────
-   TRANSLATIONS
-────────────────────────────────────────────── */
-const TX = {
-  en: {
-    heroP: "Discover your behavioral profile · Anonymous · Group insights",
-    anonTxt: "Your responses are fully anonymous. No name or identity is ever stored — only your DISC scores contribute to the group view.",
-    startBtn: "Start your assessment →",
-    retake: "Retake assessment",
-    viewGroup: "View group results →",
-    qOf: (c,t) => `Question ${c} of ${t}`,
-    strengths:"Core strengths", growth:"Growth areas", workStyle:"Work style", comms:"How to communicate",
-    groupTitle: "Group DISC distribution — average score contribution",
-    totalResp:"Total responses", dominant:"Most common type", spread:"Type diversity", avgPer:"Avg per response",
-    noData: "No group data yet. Share this page with your team and ask them to complete the assessment!",
-    shareNote: "Share this page with your team. Results are fully anonymous — only DISC scores are collected.",
-    storageNote: "Group data is stored locally in this browser for demo. To share across your team, connect a backend — see the code comments for instructions.",
-    ov:{
-      d:{n:"Dominance",   d:"Results-driven and direct. You tackle challenges head-on and move fast toward goals.",      t:["Decisive","Bold","Competitive"]},
-      i:{n:"Influence",   d:"Enthusiastic and optimistic. You inspire others and thrive through collaboration.",          t:["Charismatic","Persuasive","Optimistic"]},
-      s:{n:"Steadiness",  d:"Reliable and patient. You build trust through consistency and genuine care.",                t:["Loyal","Calm","Supportive"]},
-      c:{n:"Conscientiousness",d:"Analytical and precise. You set high standards, value accuracy, and think before you act.", t:["Accurate","Systematic","Careful"]}
-    }
-  },
-  hi: {
-    heroP: "अपनी व्यवहारिक प्रोफ़ाइल जानें · गुमनाम · समूह दृष्टिकोण",
-    anonTxt: "आपके उत्तर पूरी तरह गुमनाम हैं। कोई नाम या पहचान कभी संग्रहीत नहीं होती — केवल आपके DISC स्कोर समूह दृश्य में योगदान करते हैं।",
-    startBtn: "आकलन शुरू करें →",
-    retake: "दोबारा आकलन करें",
-    viewGroup: "समूह परिणाम देखें →",
-    qOf: (c,t) => `प्रश्न ${c} / ${t}`,
-    strengths:"मुख्य शक्तियाँ", growth:"विकास के क्षेत्र", workStyle:"कार्य शैली", comms:"संवाद कैसे करें",
-    groupTitle: "समूह DISC वितरण — औसत स्कोर योगदान",
-    totalResp:"कुल प्रतिक्रियाएं", dominant:"सबसे सामान्य प्रकार", spread:"प्रकार विविधता", avgPer:"औसत प्रति प्रतिक्रिया",
-    noData: "अभी कोई समूह डेटा नहीं। इस पृष्ठ को अपनी टीम के साथ साझा करें और उन्हें आकलन पूरा करने के लिए कहें!",
-    shareNote: "इस पृष्ठ को अपनी टीम के साथ साझा करें। परिणाम पूरी तरह गुमनाम हैं — केवल DISC स्कोर एकत्र किए जाते हैं।",
-    storageNote: "समूह डेटा इस ब्राउज़र में स्थानीय रूप से संग्रहीत है। टीम के साथ साझा करने के लिए, बैकएंड कनेक्ट करें।",
-    ov:{
-      d:{n:"प्रभुत्व (D)",       d:"परिणाम-केंद्रित और प्रत्यक्ष। आप चुनौतियों से सीधे टकराते हैं।",              t:["निर्णायक","साहसी","प्रतिस्पर्धी"]},
-      i:{n:"प्रभाव (I)",         d:"उत्साही और आशावादी। आप सहयोग के माध्यम से दूसरों को प्रेरित करते हैं।",        t:["करिश्माई","प्रेरक","आशावादी"]},
-      s:{n:"स्थिरता (S)",        d:"विश्वसनीय और धैर्यशील। आप निरंतरता से विश्वास बनाते हैं।",                    t:["वफादार","शांत","सहायक"]},
-      c:{n:"कर्तव्यनिष्ठा (C)", d:"विश्लेषणात्मक और सटीक। आप उच्च मानक रखते हैं और सोचकर कार्य करते हैं।",       t:["सटीक","व्यवस्थित","सावधान"]}
-    }
-  }
-};
-
-/* ──────────────────────────────────────────────
-   QUESTIONS (18)
-────────────────────────────────────────────── */
-const QS = [
-  {en:"When facing a difficult decision, you tend to…",hi:"कठिन निर्णय लेते समय आप आमतौर पर…",choices:[
-    {en:"Make it quickly and move forward",            hi:"जल्दी निर्णय लेकर आगे बढ़ते हैं",        type:"D"},
-    {en:"Talk it through with others for input",       hi:"दूसरों के साथ मिलकर सोचते हैं",          type:"I"},
-    {en:"Take time to consider everyone's feelings",   hi:"सबकी भावनाओं का ध्यान रखते हैं",         type:"S"},
-    {en:"Research all the options thoroughly",         hi:"सभी विकल्पों का गहन अध्ययन करते हैं",    type:"C"}]},
-  {en:"In a team, others would describe you as…",hi:"टीम में दूसरे आपको बताएंगे…",choices:[
-    {en:"The one who drives results",                  hi:"जो परिणाम की ओर ले जाता है",             type:"D"},
-    {en:"The energiser who boosts morale",             hi:"जो माहौल उत्साहित करता है",               type:"I"},
-    {en:"The steady glue holding people together",     hi:"जो टीम को एकजुट रखता है",                type:"S"},
-    {en:"The one who ensures quality and accuracy",    hi:"जो गुणवत्ता सुनिश्चित करता है",           type:"C"}]},
-  {en:"Your biggest frustration at work is…",hi:"काम पर आपकी सबसे बड़ी परेशानी है…",choices:[
-    {en:"Being slowed down by bureaucracy",            hi:"नौकरशाही से काम रुकना",                   type:"D"},
-    {en:"Working in isolation without connection",     hi:"बिना मेल-जोल के अकेले काम करना",          type:"I"},
-    {en:"Constant change and instability",             hi:"लगातार बदलाव और अस्थिरता",                type:"S"},
-    {en:"Sloppy work and cutting corners",             hi:"लापरवाही से काम करना",                    type:"C"}]},
-  {en:"You feel most energised when…",hi:"आप सबसे अधिक ऊर्जावान महसूस करते हैं जब…",choices:[
-    {en:"Taking charge of a big challenge",            hi:"बड़ी चुनौती की जिम्मेदारी लेते हैं",      type:"D"},
-    {en:"Brainstorming and creating with others",      hi:"दूसरों के साथ विचार-विमर्श करते हैं",     type:"I"},
-    {en:"Helping someone solve a problem",             hi:"किसी की समस्या सुलझाने में मदद करते हैं", type:"S"},
-    {en:"Mastering a complex skill or subject",        hi:"जटिल कौशल में महारत हासिल करते हैं",      type:"C"}]},
-  {en:"When giving feedback, you tend to be…",hi:"फ़ीडबैक देते समय आप आमतौर पर…",choices:[
-    {en:"Blunt and direct — honesty first",            hi:"सीधे और स्पष्ट — ईमानदारी पहले",          type:"D"},
-    {en:"Encouraging with a positive spin",            hi:"उत्साहजनक और सकारात्मक",                  type:"I"},
-    {en:"Gentle and sensitive to feelings",            hi:"नरम और भावनाओं का ख्याल रखने वाले",       type:"S"},
-    {en:"Precise, data-driven and structured",         hi:"सटीक, डेटा-आधारित और व्यवस्थित",          type:"C"}]},
-  {en:"Your workspace is typically…",hi:"आपका कार्यस्थल आमतौर पर…",choices:[
-    {en:"Functional — only what's needed",             hi:"व्यावहारिक — सिर्फ जरूरी चीजें",          type:"D"},
-    {en:"Colourful with photos of people",             hi:"रंगीन, लोगों की तस्वीरों से भरा",         type:"I"},
-    {en:"Comfortable and personalised",                hi:"आरामदायक और व्यक्तिगत",                   type:"S"},
-    {en:"Neat, organised and systematic",              hi:"साफ, व्यवस्थित और नियमित",                type:"C"}]},
-  {en:"When a project goes off track, your instinct is to…",hi:"जब कोई प्रोजेक्ट पटरी से उतरे, आपकी प्रवृत्ति है…",choices:[
-    {en:"Take control and reset direction fast",       hi:"नियंत्रण लेकर दिशा तुरंत ठीक करना",      type:"D"},
-    {en:"Rally the team and keep spirits high",        hi:"टीम को एकजुट करना और उत्साह बनाए रखना",  type:"I"},
-    {en:"Listen to everyone and find consensus",       hi:"सुनकर सहमति बनाना",                       type:"S"},
-    {en:"Analyse what went wrong and build a fix",     hi:"गड़बड़ी समझकर समाधान बनाना",               type:"C"}]},
-  {en:"When learning something new, you prefer…",hi:"कुछ नया सीखते समय आप पसंद करते हैं…",choices:[
-    {en:"Jumping in and figuring it out",              hi:"सीधे शुरू करके खुद सीखना",                type:"D"},
-    {en:"Learning in a group via discussion",          hi:"समूह में चर्चा करते हुए सीखना",           type:"I"},
-    {en:"A patient mentor guiding you step by step",   hi:"धैर्यवान मार्गदर्शक के साथ सीखना",       type:"S"},
-    {en:"Reading detailed documentation or guides",    hi:"विस्तृत दस्तावेज़ और गाइड पढ़कर सीखना",  type:"C"}]},
-  {en:"Your communication style is most often…",hi:"आपकी संचार शैली अक्सर होती है…",choices:[
-    {en:"Short, direct and to the point",              hi:"संक्षिप्त, सीधी और बिंदु पर",             type:"D"},
-    {en:"Animated, expressive and storytelling",       hi:"जीवंत, भावपूर्ण और कहानी जैसी",           type:"I"},
-    {en:"Warm, conversational and personal",           hi:"गर्मजोशी भरी और व्यक्तिगत",               type:"S"},
-    {en:"Precise, measured and well-structured",       hi:"सटीक, संतुलित और सुव्यवस्थित",            type:"C"}]},
-  {en:"You handle conflict by…",hi:"विवाद को आप इस तरह सुलझाते हैं…",choices:[
-    {en:"Confronting it head-on immediately",          hi:"सीधे सामना करते हैं",                     type:"D"},
-    {en:"Charming and smoothing things over",          hi:"मीठे स्वभाव से माहौल सुधारते हैं",        type:"I"},
-    {en:"Avoiding it or mediating between others",     hi:"टालते हैं या बीच-बचाव करते हैं",          type:"S"},
-    {en:"Presenting facts and logical arguments",      hi:"तथ्य और तर्क से समाधान निकालते हैं",      type:"C"}]},
-  {en:"Under pressure, you tend to…",hi:"दबाव में आप आमतौर पर…",choices:[
-    {en:"Become more controlling and demanding",       hi:"अधिक नियंत्रण करने वाले बन जाते हैं",    type:"D"},
-    {en:"Become scattered and over-talkative",         hi:"बिखरे हुए और अधिक बातूनी हो जाते हैं",   type:"I"},
-    {en:"Withdraw and become overly accommodating",    hi:"पीछे हट जाते और ज़्यादा समझौता करते हैं", type:"S"},
-    {en:"Become hyper-critical and overanalyse",       hi:"अत्यधिक आलोचनात्मक हो जाते हैं",         type:"C"}]},
-  {en:"In social gatherings, you usually…",hi:"सामाजिक समारोहों में आप आमतौर पर…",choices:[
-    {en:"Lead conversations and steer the group",      hi:"बातचीत का नेतृत्व करते हैं",              type:"D"},
-    {en:"Meet everyone and energise the room",         hi:"सबसे मिलते और माहौल बनाते हैं",           type:"I"},
-    {en:"Stick with close friends and listen",         hi:"करीबी दोस्तों के साथ ध्यान से सुनते हैं",type:"S"},
-    {en:"Observe thoughtfully before engaging",        hi:"सोच-समझकर जुड़ते हैं",                   type:"C"}]},
-  {en:"Your approach to setting goals is…",hi:"लक्ष्य निर्धारित करने का आपका तरीका है…",choices:[
-    {en:"Bold and ambitious — aim high",               hi:"साहसी और महत्वाकांक्षी — ऊँचा लक्ष्य",   type:"D"},
-    {en:"Inspiring and vision-driven",                 hi:"प्रेरणादायक और दृष्टिकोण-आधारित",        type:"I"},
-    {en:"Realistic and team-oriented",                 hi:"यथार्थवादी और टीम-केंद्रित",              type:"S"},
-    {en:"Detailed, measurable and time-bound",         hi:"विस्तृत, मापनीय और समयबद्ध",              type:"C"}]},
-  {en:"When someone disagrees with you, you…",hi:"जब कोई आपसे असहमत हो, आप…",choices:[
-    {en:"State your case firmly and move on",          hi:"दृढ़ता से बात कहते और आगे बढ़ते हैं",     type:"D"},
-    {en:"Try to win them over with enthusiasm",        hi:"उत्साह से मनाने की कोशिश करते हैं",       type:"I"},
-    {en:"Seek to understand their perspective first",  hi:"पहले उनका नज़रिया समझते हैं",             type:"S"},
-    {en:"Present data and logical reasoning",          hi:"डेटा और तार्किक तर्क प्रस्तुत करते हैं", type:"C"}]},
-  {en:"Your leadership style leans toward…",hi:"आपकी नेतृत्व शैली झुकती है…",choices:[
-    {en:"Commanding — you set the direction",          hi:"आदेशात्मक — आप दिशा तय करते हैं",         type:"D"},
-    {en:"Inspiring — motivate through vision",         hi:"प्रेरणादायक — दृष्टि से प्रेरित करते हैं",type:"I"},
-    {en:"Coaching — nurture and support growth",       hi:"कोचिंग — विकास में सहायता करते हैं",      type:"S"},
-    {en:"Expert — lead through deep knowledge",        hi:"विशेषज्ञ — ज्ञान से नेतृत्व करते हैं",    type:"C"}]},
-  {en:"When starting a new role, you…",hi:"नई भूमिका में जाते समय आप…",choices:[
-    {en:"Seek quick wins to prove yourself fast",      hi:"तुरंत छोटी जीत हासिल करते हैं",           type:"D"},
-    {en:"Focus on meeting everyone first",             hi:"सबसे मिलने पर ध्यान देते हैं",            type:"I"},
-    {en:"Observe, listen and integrate slowly",        hi:"देखते हैं और धीरे-धीरे घुलते हैं",        type:"S"},
-    {en:"Study processes and systems deeply",          hi:"प्रक्रियाएं और प्रणाली गहराई से समझते हैं",type:"C"}]},
-  {en:"You feel most recognised when…",hi:"आप सबसे अधिक सम्मानित महसूस करते हैं जब…",choices:[
-    {en:"Given more responsibility and authority",     hi:"अधिक जिम्मेदारी और अधिकार दिया जाए",      type:"D"},
-    {en:"Others publicly appreciate your contribution",hi:"सार्वजनिक सराहना मिले",                   type:"I"},
-    {en:"People sincerely thank your support",         hi:"दिल से धन्यवाद मिले",                     type:"S"},
-    {en:"Your expertise and accuracy are acknowledged",hi:"विशेषज्ञता और सटीकता को स्वीकार किया जाए",type:"C"}]},
-  {en:"Given a vague or open-ended task, you…",hi:"अस्पष्ट या खुले कार्य दिए जाने पर आप…",choices:[
-    {en:"Dive in and create your own structure",       hi:"आगे बढ़ते और अपनी संरचना बनाते हैं",      type:"D"},
-    {en:"Brainstorm freely and see what sticks",       hi:"स्वतंत्र विचार करते और देखते हैं",         type:"I"},
-    {en:"Seek clarification and examples first",       hi:"पहले स्पष्टता और उदाहरण माँगते हैं",      type:"S"},
-    {en:"Ask detailed questions and map it out fully", hi:"विस्तृत प्रश्न पूछकर पूरी योजना बनाते हैं",type:"C"}]}
+// Question bank
+const base = [
+[["Dominant","D"],["Inspiring","I"],["Steady","S"],["Careful","C"]],
+[["Forceful","D"],["Talkative","I"],["Patient","S"],["Accurate","C"]],
+[["Bold","D"],["Optimistic","I"],["Calm","S"],["Precise","C"]],
+[["Decisive","D"],["Social","I"],["Loyal","S"],["Analytical","C"]],
+[["Assertive","D"],["Persuasive","I"],["Kind","S"],["Systematic","C"]],
+[["Competitive","D"],["Enthusiastic","I"],["Stable","S"],["Orderly","C"]],
+[["Results-driven","D"],["Friendly","I"],["Reliable","S"],["Detail-focused","C"]]
 ];
 
-/* ──────────────────────────────────────────────
-   PROFILES
-────────────────────────────────────────────── */
-const PROF = {
-  D: {
-    name:     {en:"Dominant Driver",      hi:"प्रभुत्वशाली नेता"},
-    color:    "#E24B4A", lc:"#FCEBEB",    dc:"#791F1F",
-    tagline:  {en:"You move fast, decide boldly, and lead by example.",
-               hi:"आप तेज़ी से काम करते हैं, साहसी निर्णय लेते हैं और उदाहरण से नेतृत्व करते हैं।"},
-    strengths:{en:["Decisive under pressure","Results-focused","Natural leader","Embraces challenges"],
-               hi:["दबाव में निर्णायक","परिणाम-केंद्रित","स्वाभाविक नेता","चुनौतियाँ स्वीकार करते हैं"]},
-    growth:   {en:["Practice active listening","Give others time to process","Value process, not just outcome"],
-               hi:["सक्रिय सुनने का अभ्यास करें","दूसरों को सोचने का समय दें","केवल परिणाम नहीं, प्रक्रिया को भी महत्व दें"]},
-    workStyle:{en:"You thrive with autonomy, authority, and clear targets. Routine and micromanagement drain you.",
-               hi:"आप स्वायत्तता, अधिकार और स्पष्ट लक्ष्यों के साथ फलते-फूलते हैं।"},
-    comms:    {en:"Be direct and brief. Lead with the bottom line. Skip small talk.",
-               hi:"सीधे और संक्षिप्त रहें। मुख्य बात से शुरुआत करें।"}
-  },
-  I: {
-    name:     {en:"Influential Inspirer", hi:"प्रभावशाली प्रेरक"},
-    color:    "#EF9F27", lc:"#FAEEDA",    dc:"#633806",
-    tagline:  {en:"You light up rooms, build connections, and make ideas exciting.",
-               hi:"आप माहौल में ऊर्जा भरते हैं, संबंध बनाते हैं और विचारों को रोमांचक बनाते हैं।"},
-    strengths:{en:["Enthusiastic and persuasive","Strong networker","Creative thinker","Motivates others"],
-               hi:["उत्साही और प्रेरक","मजबूत नेटवर्क बनाने वाले","रचनात्मक सोच","दूसरों को प्रेरित करते हैं"]},
-    growth:   {en:["Follow through on commitments","Slow down to gather details","Focus on fewer things at once"],
-               hi:["प्रतिबद्धताएं पूरी करें","विवरण के लिए धीमे हों","एक बार में कम चीजों पर ध्यान दें"]},
-    workStyle:{en:"You shine in collaborative, social environments. Isolated work and rigid routines stifle you.",
-               hi:"आप सहयोगी, सामाजिक वातावरण में चमकते हैं।"},
-    comms:    {en:"Keep it fun and personal. Allow relationship-building time. Be enthusiastic and affirming.",
-               hi:"मज़ेदार और व्यक्तिगत रखें। संबंध बनाने का समय दें।"}
-  },
-  S: {
-    name:     {en:"Steady Supporter",     hi:"स्थिर सहयोगी"},
-    color:    "#1D9E75", lc:"#E1F5EE",    dc:"#085041",
-    tagline:  {en:"You build trust quietly, show up consistently, and make others feel safe.",
-               hi:"आप शांति से विश्वास बनाते हैं, हमेशा उपस्थित रहते हैं और दूसरों को सुरक्षित महसूस कराते हैं।"},
-    strengths:{en:["Loyal and dependable","Patient listener","Conflict mediator","Team anchor"],
-               hi:["वफादार और भरोसेमंद","धैर्यपूर्वक सुनते हैं","विवाद मध्यस्थ","टीम की नींव"]},
-    growth:   {en:["Speak up when you disagree","Embrace change proactively","Set boundaries with your time"],
-               hi:["असहमति पर बोलें","बदलाव को सक्रिय रूप से अपनाएं","अपने समय की सीमाएं निर्धारित करें"]},
-    workStyle:{en:"You prefer stable environments with clear expectations. You give deeply and need genuine appreciation.",
-               hi:"आप स्पष्ट अपेक्षाओं के साथ स्थिर वातावरण पसंद करते हैं।"},
-    comms:    {en:"Be warm and personal. Show genuine interest. Avoid sudden changes — give notice and context.",
-               hi:"गर्मजोशी से बात करें। वास्तविक रुचि दिखाएं। अचानक बदलाव से बचें।"}
-  },
-  C: {
-    name:     {en:"Conscientious Analyst",hi:"कर्तव्यनिष्ठ विश्लेषक"},
-    color:    "#378ADD", lc:"#E6F1FB",    dc:"#0C447C",
-    tagline:  {en:"You bring precision, depth, and quality to everything you touch.",
-               hi:"आप जो भी करते हैं उसमें सटीकता, गहराई और गुणवत्ता लाते हैं।"},
-    strengths:{en:["Highly accurate","Systematic thinker","Sets high standards","Thorough researcher"],
-               hi:["अत्यधिक सटीक","व्यवस्थित विचारक","उच्च मानक स्थापित करते हैं","गहन शोधकर्ता"]},
-    growth:   {en:["Avoid analysis paralysis","Share opinions more openly","Extend trust to others' work"],
-               hi:["विश्लेषण में न उलझें","राय खुलकर साझा करें","दूसरों के काम पर विश्वास बढ़ाएं"]},
-    workStyle:{en:"You thrive with time, clear criteria, and freedom to do things right. Vague briefs are your kryptonite.",
-               hi:"आप समय, स्पष्ट मानदंड और सही तरीके से काम करने की स्वतंत्रता के साथ फलते हैं।"},
-    comms:    {en:"Come with evidence and logic. Respect their preparation time. Let facts speak.",
-               hi:"सबूत और तर्क के साथ आएं। तैयारी का समय दें। तथ्यों को बोलने दें।"}
-  }
-};
+let items=[];
+for(let i=0;i<28;i++) items.push(base[i%base.length]);
 
-/* ──────────────────────────────────────────────
-   NAVIGATION
-────────────────────────────────────────────── */
-function goTab(name) {
-  document.querySelectorAll('.sec').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tab').forEach(b => b.classList.remove('active'));
-  document.getElementById('sec-' + name).classList.add('active');
-  document.querySelectorAll('.tab').forEach(b => {
-    if (b.getAttribute('onclick') && b.getAttribute('onclick').includes("'" + name + "'")) b.classList.add('active');
-  });
-  if (name === 'assess') renderQ();
-  if (name === 'group')  loadGroup();
-}
+let index=0;
+let responses = {};
 
-/* ──────────────────────────────────────────────
-   LANGUAGE
-────────────────────────────────────────────── */
-function setLang(l) {
-  lang = l;
-  document.querySelectorAll('.lbtn').forEach(b => b.classList.remove('active'));
-  document.querySelectorAll('.lbtn').forEach(b => {
-    if ((l === 'en' && b.textContent === 'EN') || (l === 'hi' && b.textContent === 'हिंदी')) b.classList.add('active');
-  });
-  applyLang();
-  if (document.getElementById('sec-assess').classList.contains('active')) renderQ();
-  if (document.getElementById('sec-result').classList.contains('active') && document.getElementById('result-body').innerHTML) renderResultBody();
-  if (document.getElementById('sec-group').classList.contains('active')) loadGroup();
-}
+const card = document.getElementById("card");
+const progressBar = document.getElementById("progressBar");
 
-function applyLang() {
-  const tx = TX[lang];
-  document.getElementById('hero-p').textContent   = tx.heroP;
-  document.getElementById('anon-txt').textContent = tx.anonTxt;
-  document.getElementById('start-btn').textContent = tx.startBtn;
-  const ov = tx.ov;
-  ['d','i','s','c'].forEach(k => {
-    const d = ov[k];
-    document.getElementById('ov-' + k + 'n').textContent = d.n;
-    document.getElementById('ov-' + k + 'd').textContent = d.d;
-    d.t.forEach((tr, i) => { const el = document.getElementById('ov-' + k + (i + 1)); if (el) el.textContent = tr; });
-  });
-}
+function render(){
+    let q = items[index];
 
-/* ──────────────────────────────────────────────
-   ASSESSMENT
-────────────────────────────────────────────── */
-function renderQ() {
-  const q = QS[cur], total = QS.length;
-  const pct = Math.round((cur / total) * 100);
-  document.getElementById('qcnt').textContent = TX[lang].qOf(cur + 1, total);
-  document.getElementById('qpct').textContent = pct + '%';
-  document.getElementById('pbf').style.width = pct + '%';
-  document.getElementById('qt').textContent  = q.en;
-  document.getElementById('qth').textContent = q.hi;
-  const g = document.getElementById('cgrid');
-  g.innerHTML = '';
-  q.choices.forEach(c => {
-    const btn = document.createElement('button');
-    btn.className = 'cb';
-    btn.innerHTML = (lang === 'hi' ? c.hi : c.en) + `<span class="csub">${lang === 'hi' ? c.en : c.hi}</span>`;
-    btn.onclick = () => pick(c.type, btn);
-    g.appendChild(btn);
-  });
-}
+    progressBar.style.width = ((index)/28)*100 + "%";
 
-function pick(type, btn) {
-  document.querySelectorAll('.cb').forEach(b => b.className = 'cb');
-  btn.className = 'cb c' + type;
-  scores[type]++;
-  setTimeout(() => {
-    cur++;
-    if (cur >= QS.length) finish();
-    else renderQ();
-  }, 380);
-}
+    card.innerHTML = `
+    <h2>Question ${index+1} / 28</h2>
+    <p><strong>Which describes you best?</strong></p>
 
-/* ──────────────────────────────────────────────
-   FINISH & SAVE
-────────────────────────────────────────────── */
-async function finish() {
-  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  const top = sorted[0][0];
-  const id  = 's_' + Date.now() + '_' + Math.random().toString(36).slice(2, 7);
-  const payload = { id, D: scores.D, I: scores.I, S: scores.S, C: scores.C, top, ts: Date.now() };
-  await Storage.save(id, payload);
-  document.getElementById('rtab').style.display = 'inline-block';
-  goTab('result');
-  renderResultBody();
-}
-
-/* ──────────────────────────────────────────────
-   RESULT RENDER
-────────────────────────────────────────────── */
-function renderResultBody() {
-  const total  = Object.values(scores).reduce((a, b) => a + b, 0) || 1;
-  const sorted = Object.entries(scores).sort((a, b) => b[1] - a[1]);
-  const top    = sorted[0][0];
-  const p = PROF[top], tx = TX[lang];
-
-  document.getElementById('result-body').innerHTML = `
-    <div class="rh">
-      <div class="rbig" style="color:${p.color}">${top}</div>
-      <div class="rl">${p.name[lang]}</div>
-      <div class="rs">${p.tagline[lang]}</div>
-    </div>
-    <div class="result-card">
-      <div class="sbars">
-        ${sorted.map(([tp, v]) => `
-          <div class="srow">
-            <span class="slbl" style="color:${PROF[tp].color}">${PROF[tp].name[lang].split(' ')[0]}</span>
-            <div class="str"><div class="sf" style="width:${Math.round((v / total) * 100)}%;background:${PROF[tp].color}"></div></div>
-            <span class="spct">${Math.round((v / total) * 100)}%</span>
-          </div>`).join('')}
-      </div>
-    </div>
-    <div class="igrid">
-      <div class="ic2"><div class="it">${tx.strengths}</div><div class="ib">${p.strengths[lang].map(s => '• ' + s).join('<br>')}</div></div>
-      <div class="ic2"><div class="it">${tx.growth}</div><div class="ib">${p.growth[lang].map(s => '• ' + s).join('<br>')}</div></div>
-      <div class="ic2"><div class="it">${tx.workStyle}</div><div class="ib">${p.workStyle[lang]}</div></div>
-      <div class="ic2"><div class="it">${tx.comms}</div><div class="ib">${p.comms[lang]}</div></div>
-    </div>
-    <div class="notice" style="margin-top:1.2rem">${tx.shareNote}</div>
-    <button class="gbtn" onclick="goTab('group')">${tx.viewGroup}</button>
-    <button class="gbtn" onclick="resetAll()" style="margin-top:.5rem">${tx.retake}</button>
-  `;
-}
-
-/* ──────────────────────────────────────────────
-   GROUP VIEW
-────────────────────────────────────────────── */
-async function loadGroup() {
-  const body = document.getElementById('group-body');
-  body.innerHTML = '<div class="loading">Loading group data...</div>';
-  const tx = TX[lang];
-  try {
-    const all = await Storage.loadAll();
-    if (!all.length) {
-      body.innerHTML = `
-        <div class="config-panel">
-          <strong>Backend setup required for real shared data</strong>
-          This file currently stores data in your browser's localStorage — only visible on this device.
-          To share results across your team, open <code>disc-portal.html</code> in a text editor and follow the backend setup instructions in the <code>Storage</code> section at the top of the script.
+    <div class="options">
+        <div class="col">
+        <b>MOST</b>
+        ${q.map(o=>`
+            <label>
+            <input type="radio" name="most" value="${o[1]}"
+            ${responses[index]?.most===o[1]?'checked':''}>
+            I am ${o[0].toLowerCase()}
+            </label>`).join("")}
         </div>
-        <div class="notice">${tx.noData}</div>`;
-      return;
+
+        <div class="col">
+        <b>LEAST</b>
+        ${q.map(o=>`
+            <label>
+            <input type="radio" name="least" value="${o[1]}"
+            ${responses[index]?.least===o[1]?'checked':''}>
+            I am ${o[0].toLowerCase()}
+            </label>`).join("")}
+        </div>
+    </div>
+
+    <button onclick="next()">Next</button>
+    ${index>0?'<button onclick="prev()" style="background:#6c757d;margin-top:10px;">Previous</button>':''}
+    `;
+}
+
+function next(){
+    let most = document.querySelector('input[name=most]:checked');
+    let least = document.querySelector('input[name=least]:checked');
+
+    if(!most || !least){
+        alert("Please select both MOST and LEAST");
+        return;
+    }
+    if(most.value===least.value){
+        alert("Cannot be same");
+        return;
     }
 
-    const agg = {D:0, I:0, S:0, C:0};
-    const topCounts = {D:0, I:0, S:0, C:0};
-    all.forEach(d => {
-      agg.D += d.D || 0; agg.I += d.I || 0; agg.S += d.S || 0; agg.C += d.C || 0;
-      if (d.top) topCounts[d.top] = (topCounts[d.top] || 0) + 1;
+    responses[index] = {most:most.value, least:least.value};
+
+    if(index < 27){
+        index++;
+        render();
+    } else {
+        calculate();
+    }
+}
+
+function prev(){
+    index--;
+    render();
+}
+
+function calculate(){
+    let most={D:0,I:0,S:0,C:0};
+    let least={D:0,I:0,S:0,C:0};
+
+    Object.values(responses).forEach(r=>{
+        most[r.most]++;
+        least[r.least]++;
     });
-    const grand = (agg.D + agg.I + agg.S + agg.C) || 1;
-    const total = all.length;
-    const domType = Object.entries(topCounts).sort((a, b) => b[1] - a[1])[0];
-    const typeCount = Object.values(topCounts).filter(v => v > 0).length;
-    const sorted = Object.entries(agg).sort((a, b) => b[1] - a[1]);
 
-    body.innerHTML = `
-      <div class="anon-bar"><div class="anon-dot"></div><div class="anon-txt">${tx.anonTxt}</div></div>
-      <div class="config-panel">
-        <strong>Note: data is currently stored locally in this browser</strong>
-        To collect responses from your whole team, connect a shared backend. See the Storage section in the source code.
-      </div>
-      <div class="stat-row">
-        <div class="stat"><div class="stat-val">${total}</div><div class="stat-lbl">${tx.totalResp}</div></div>
-        <div class="stat"><div class="stat-val" style="color:${PROF[domType[0]].color}">${domType[0]}</div><div class="stat-lbl">${tx.dominant}</div></div>
-        <div class="stat"><div class="stat-val">${typeCount}/4</div><div class="stat-lbl">${tx.spread}</div></div>
-        <div class="stat"><div class="stat-val">${(grand / total / 4).toFixed(1)}</div><div class="stat-lbl">${tx.avgPer}</div></div>
-      </div>
-      <div class="dist-grid">
-        ${['D','I','S','C'].map(tp => `
-          <div class="dist-card ${tp === 'I' ? 'ic' : tp.toLowerCase()}">
-            <div class="dist-letter">${tp}</div>
-            <div class="dist-n">${topCounts[tp] || 0}</div>
-            <div class="dist-pct">${total > 0 ? Math.round(((topCounts[tp] || 0) / total) * 100) : 0}% of team</div>
-          </div>`).join('')}
-      </div>
-      <div class="grp-bars">
-        <div class="grp-title">${tx.groupTitle}</div>
-        ${sorted.map(([tp, v]) => `
-          <div class="grp-row">
-            <span class="grp-lbl" style="color:${PROF[tp].color}">${PROF[tp].name[lang].split(' ')[0]}</span>
-            <div class="grp-track">
-              <div class="grp-fill" style="width:${Math.round((v / grand) * 100)}%;background:${PROF[tp].color}">
-                <span class="grp-pct">${Math.round((v / grand) * 100)}%</span>
-              </div>
-            </div>
-            <span class="grp-n">${v}</span>
-          </div>`).join('')}
-      </div>
+    let final={
+        D: most.D - least.D,
+        I: most.I - least.I,
+        S: most.S - least.S,
+        C: most.C - least.C
+    };
+
+    let sorted = Object.entries(final).sort((a,b)=>b[1]-a[1]);
+    let blend = sorted[0][0] + sorted[1][0];
+
+    function bar(v){
+        return `<div class="bar" style="width:${50+v*2}px"></div>`;
+    }
+
+    card.innerHTML = `
+    <h2>Your DISC Profile</h2>
+
+    <p><b>Natural:</b> D:${most.D} I:${most.I} S:${most.S} C:${most.C}</p>
+    <p><b>Adapted:</b> D:${least.D} I:${least.I} S:${least.S} C:${least.C}</p>
+    <p><b>Final:</b> D:${final.D} I:${final.I} S:${final.S} C:${final.C}</p>
+
+    <h3>Blended Style: ${blend}</h3>
+
+    <h3>Graph</h3>
+    D ${bar(final.D)}
+    I ${bar(final.I)}
+    S ${bar(final.S)}
+    C ${bar(final.C)}
+
+    <button onclick="exportExcel(${final.D},${final.I},${final.S},${final.C},'${blend}')">
+    Export Excel
+    </button>
     `;
-  } catch(e) {
-    body.innerHTML = `<div class="notice">Could not load group data. Please try again.</div>`;
-  }
 }
 
-/* ──────────────────────────────────────────────
-   RESET
-────────────────────────────────────────────── */
-function resetAll() {
-  cur = 0; scores = {D:0, I:0, S:0, C:0};
-  document.getElementById('rtab').style.display = 'none';
-  goTab('assess');
+// Excel export
+function exportExcel(D,I,S,C,blend){
+    let table = `
+    <table>
+    <tr><th>Trait</th><th>Score</th></tr>
+    <tr><td>D</td><td>${D}</td></tr>
+    <tr><td>I</td><td>${I}</td></tr>
+    <tr><td>S</td><td>${S}</td></tr>
+    <tr><td>C</td><td>${C}</td></tr>
+    <tr><td>Blend</td><td>${blend}</td></tr>
+    </table>`;
+
+    let uri = 'data:application/vnd.ms-excel;base64,';
+    let base64 = btoa(unescape(encodeURIComponent(table)));
+    let link = document.createElement("a");
+    link.href = uri + base64;
+    link.download = "DISC_Result.xls";
+    link.click();
 }
 
-/* ── Init ── */
-applyLang();
-renderQ();
+// start
+render();
+
 </script>
 </body>
 </html>
