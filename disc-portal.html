@@ -443,6 +443,21 @@
      - POST /responses  (save)
      - GET  /responses  (list all for group view)
 ────────────────────────────────────────────── */
+
+const Storage = {
+  async save(id, payload) {
+    const db = firebase.database();
+    await db.ref('responses/' + id).set(payload);
+    return true;
+  },
+  async loadAll() {
+    const db = firebase.database();
+    const snap = await db.ref('responses').once('value');
+    const data = snap.val();
+    return data ? Object.values(data) : [];
+  }
+};
+  
 const firebaseConfig = {
 
   apiKey: "AIzaSyALEtKzmT47_frmpTd_FcOaEO-0rtu1bIM",
