@@ -832,7 +832,11 @@ function nextQ(){
   if(!a||a.most===undefined||a.least===undefined) return;
   cur++;
   if(cur>=ITEMS.length){
-    incrementCounter().then(()=>refreshCounterDisplay());
+    // Increment counter and update display with returned value
+    incrementCounter().then(n=>{
+      const el=document.getElementById('counter-val');
+      if(el&&n!==null) el.textContent=Number(n).toLocaleString();
+    });
     document.getElementById('rtab').style.display='inline-block';
     goTab('result');
   } else {
@@ -1126,36 +1130,60 @@ function resetAll(){
 }
 
 /* ─────────────────────────────────────────────
-   USAGE COUNTER
-   Stores count in localStorage by default.
-   When Firebase is connected, replace the two
-   functions below with Firebase calls:
-     incrementCounter() → db.ref('counter').transaction(n=>(n||0)+1)
-     loadCounter()      → db.ref('counter').once('value').then(s=>s.val()||0)
+   USAGE COUNTER — countapi.xyz (free, shared,
+   no setup needed, works across all devices)
+   
+   Your counter lives at a unique key below.
+   Change COUNTER_NAMESPACE + COUNTER_KEY to
+   something unique to your organisation so it
+   doesn't clash with others.
+
+   To use Firebase instead, replace the two
+   functions with:
+     incrementCounter():
+       firebase.database().ref('disc_counter')
+         .transaction(n=>(n||0)+1)
+     loadCounter():
+       firebase.database().ref('disc_counter')
+         .once('value').then(s=>s.val()||0)
 ───────────────────────────────────────────── */
-const COUNTER_KEY = 'disc_28_completions';
+const COUNTER_NAMESPACE = 'disc-assessment-portal';
+const COUNTER_KEY       = 'completions-v1';
+const COUNTER_API       = `https://api.countapi.xyz`;
 
 async function incrementCounter(){
-  /* ---- localStorage version (works offline) ---- */
   try{
-    const n = parseInt(localStorage.getItem(COUNTER_KEY)||'0',10);
-    localStorage.setItem(COUNTER_KEY, n+1);
-  }catch(e){}
-  /* ----------------------------------------------- */
+    const r = await fetch(`${COUNTER_API}/hit/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+    if(!r.ok) throw new Error();
+    const d = await r.json();
+    return d.value || 0;
+  }catch(e){
+    // fallback: localStorage if API unreachable
+    try{
+      const n = parseInt(localStorage.getItem('disc_completions')||'0',10)+1;
+      localStorage.setItem('disc_completions', n);
+      return n;
+    }catch(e2){ return null; }
+  }
 }
 
 async function loadCounter(){
-  /* ---- localStorage version ---- */
   try{
-    return parseInt(localStorage.getItem(COUNTER_KEY)||'0',10);
-  }catch(e){ return 0; }
-  /* -------------------------------- */
+    const r = await fetch(`${COUNTER_API}/get/${COUNTER_NAMESPACE}/${COUNTER_KEY}`);
+    if(!r.ok) throw new Error();
+    const d = await r.json();
+    return d.value || 0;
+  }catch(e){
+    // fallback
+    try{ return parseInt(localStorage.getItem('disc_completions')||'0',10); }
+    catch(e2){ return null; }
+  }
 }
 
 async function refreshCounterDisplay(){
   const n = await loadCounter();
   const el = document.getElementById('counter-val');
-  if(el) el.textContent = n.toLocaleString();
+  if(el) el.textContent = n !== null ? Number(n).toLocaleString() : '—';
 }
 
 /* Init */
@@ -1166,22 +1194,14 @@ renderItem();
 </script>
 
 <!-- ============================================================
-     FIREBASE SETUP (optional — for shared data + real counter)
-     Replace the 7 PASTE_YOUR_... values with your Firebase config
-     from: Firebase Console → Project Settings → Your Apps
-
-     After initialising Firebase, also replace the two counter
-     functions in the script above with:
-
-     async function incrementCounter(){
-       await firebase.database().ref('disc_counter').transaction(n=>(n||0)+1);
-     }
-     async function loadCounter(){
-       const snap = await firebase.database().ref('disc_counter').once('value');
-       return snap.val() || 0;
-     }
-
-     This makes the counter shared and real-time across all users.
+     FIREBASE SETUP (optional — replaces countapi.xyz counter
+     with a private shared counter + group data collection)
+     
+     1. Uncomment the scripts below
+     2. Fill in your 7 Firebase config values
+     3. Replace incrementCounter() and loadCounter() in the
+        script above with the Firebase versions shown in the
+        comments inside those functions
      ============================================================
 <script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/9.6.4/firebase-database-compat.js"></script>
@@ -1201,4 +1221,3 @@ renderItem();
 
 </body>
 </html>
-
